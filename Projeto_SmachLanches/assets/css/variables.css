@@ -1,0 +1,27 @@
+:root {
+  --color-background: #ffffff;
+
+  --colors-txt-primary: #666666;
+  --colors-txt-secudary: #b3b3b3;
+  --colors-txt-terciary: #4d4d4d;
+  --color-txt-fourth: #ff8b20;
+  --colors-txt-fifth: #999999;
+
+  --colors-txt-button: #ffffff;
+
+  --color-button-primary: #4a08ff;
+  --color-button-secundary: #ff8b20;
+  --color-button-terciary: #b3b3b3;
+  --color-button-fourth: #ffe485;
+  --color-button-primary-hover: #2c00a3;
+  --color-button-secundary-hover: #fff4eb;
+  --color-button-border-primary: #333333;
+  --color-button-border-secundary: #856700;
+  --color-button-border-terciary: #00851D;
+
+  --color-thead-background: #ececec;
+  --color-thead-border: #b3b3b3;
+
+  --colors-input-border: #666666;
+  --colors-input-background: #ececec;
+}

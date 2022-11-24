@@ -1,0 +1,478 @@
+@import url(reset.css);
+@import url(variables.css);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  flex: 1;
+}
+
+aside {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-background);
+  box-shadow: 47px 0px 28px rgba(0, 0, 0, 0.01),
+    21px 0px 21px rgba(0, 0, 0, 0.02), 5px 0px 11px rgba(0, 0, 0, 0.02),
+    0px 0px 0px rgba(0, 0, 0, 0.02);
+}
+
+.active {
+  display: block;
+}
+
+.inactive {
+  display: none;
+}
+
+.logo {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.operation-data {
+  font-family: "Barlow";
+  font-weight: 500;
+  color: var(--colors-txt-primary);
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.main {
+  margin-left: 1rem;
+  margin-right: 2rem;
+}
+
+header {
+  margin-top: 1rem;
+}
+
+.titleHeader {
+  font-family: "Barlow";
+  font-weight: 700;
+  color: var(--colors-txt-terciary);
+  font-size: 2rem;
+  margin-bottom: 1.4rem;
+}
+
+.newOrder,
+.print {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.newOrder {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--color-button-primary);
+  font-family: "Inter";
+  font-weight: 600;
+  color: var(--colors-txt-button);
+  padding: 0.5rem 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.newOrder:hover {
+  cursor: pointer;
+  background-color: var(--color-button-primary-hover);
+}
+
+button {
+  transition: 0.3s;
+}
+
+.text {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--colors-txt-fourth);
+  margin-bottom: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.actionsSelect {
+  display: flex;
+  gap: 1rem;
+}
+
+select {
+  border: 1px solid #666666;
+  border-radius: 0.3rem;
+  height: 1.7rem;
+  width: 9rem;
+  font-family: "Inter";
+  font-weight: 400;
+  color: var(--colors-txt-secudary);
+  font-size: 1rem;
+}
+
+.print {
+  width: 8rem;
+  height: 1.7rem;
+  align-items: center;
+  border: 1px solid #ff8b20;
+  border-radius: 0.3rem;
+  background-color: transparent;
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-button-secundary);
+}
+
+.print:hover {
+  cursor: pointer;
+  background-color: var(--color-button-secundary-hover);
+}
+
+table {
+  width: 100%;
+  margin-bottom: 17px;
+}
+
+.snackTable {
+  display: flex;
+  width: 100%;
+}
+
+.headerTable {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 1rem;
+  border-top: 1px solid var(--color-thead-border);
+  border-bottom: 1px solid var(--color-thead-border);
+  background-color: var(--color-thead-background);
+}
+
+.headerTable td,
+#tableBody td,
+.tableBody td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tableBody,
+#tableBody {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--colors-txt-fifth);
+}
+
+.tableBody tr:nth-child(odd),
+#tableBody tr:nth-child(odd) {
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+  background-color: #fbfbfb;
+}
+
+.btnStatus {
+  width: 88px;
+  height: 30px;
+  border: 1px solid var(--color-button-border-primary);
+  border-radius: 8px;
+  background-color: var(--color-button-terciary);
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+.ready {
+  border: 1px solid var(--color-button-border-secundary);
+  background-color: var(--color-button-fourth);
+  color: var(--color-button-border-secundary);
+}
+
+.delivered {
+  border: 1px solid var(--color-button-border-terciary);
+  background-color: #85ffa0;
+  color: var(--color-button-border-terciary);
+}
+
+.delete {
+  margin-bottom: 16px;
+}
+
+#btnDelete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 19px;
+  width: 125px;
+  height: 38px;
+  border: 1px solid var(--color-button-secundary);
+  border-radius: 8px;
+  background-color: transparent;
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-txt-fourth);
+}
+
+#btnDelete:hover {
+  cursor: pointer;
+}
+
+td button:hover {
+  cursor: pointer;
+}
+
+.imageBasket img {
+  display: block;
+  margin: auto auto;
+}
+
+.textOrderTable {
+  font-family: "Barlow";
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--colors-txt-secudary);
+  text-align: center;
+}
+
+.actionsRadio {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 3%;
+}
+
+.actionsRadio label {
+  font-family: "Inter";
+  font-weight: 500;
+  size: 1rem;
+}
+
+input[type="radio"] {
+  appearance: none;
+  background-color: transparent;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
+input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  border: 3px solid #ff8b20;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.searchForProduct {
+  margin-bottom: 1.3rem;
+}
+
+.inputSearch {
+  display: flex;
+  gap: 1rem;
+}
+
+.inputSearch input {
+  width: 21rem;
+  height: 38px;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--colors-input-border);
+  font-family: "Inter";
+}
+
+.inputSearch input:hover {
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid var(--color-button-secundary);
+  border-radius: 0.5rem;
+  width: 7rem;
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-txt-fourth);
+}
+
+.search:hover {
+  cursor: pointer;
+  background-color: var(--color-button-secundary-hover);
+}
+
+.addProduct {
+  display: grid;
+  grid-template-columns: 15% 60.5% 20%;
+  gap: 2%;
+  margin-bottom: 16px;
+}
+
+.addProduct label {
+  display: block;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--colors-txt-primary);
+  margin-bottom: 5px;
+}
+
+#qty {
+  width: 136px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--colors-input-border);
+  padding-left: 16px;
+}
+
+#qty:hover {
+  cursor: pointer;
+}
+
+#product {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--colors-input-border);
+  padding-left: 16px;
+  background-color: var(--colors-input-background);
+}
+
+#price {
+  width: 182px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--colors-input-border);
+  background-color: var(--colors-input-background);
+  padding-left: 16px;
+}
+
+.add {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 32px;
+}
+
+.add button,
+.save button {
+  height: 2.2rem;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--color-button-terciary);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--colors-txt-button);
+}
+
+.add button {
+  display: flex;
+  width: 15rem;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.tableFooter {
+  font-family: "Inter";
+  font-size: 1.5rem;
+  color: var(--colors-txt-primary);
+  margin-top: 40px;
+}
+
+.tableFooter span {
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--colors-txt-primary);
+}
+
+.save button {
+  padding: 8px 16px 8px 16px;
+}
+
+.add button:hover {
+  background-color: var(--color-button-secundary);
+  cursor: pointer;
+}
+
+.save button:hover {
+  background-color: var(--color-button-primary);
+  cursor: pointer;
+}
+
+#cancel:hover {
+  cursor: pointer;
+}
+
+.interaction {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+#cancel {
+  height: 2.37rem;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--colors-txt-button);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-button-primary);
+}
+
+footer {
+  display: grid;
+  height: 2rem;
+  margin-top: 1rem;
+  font-family: "Barlow";
+  font-weight: 500;
+  color: var(--colors-txt-secudary);
+  text-align: center;
+  background-color: var(--color-background);
+}
+
+@media print {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+  .newOrder {
+    display: none;
+  }
+
+  .headerFunctions {
+    display: none;
+  }
+}
