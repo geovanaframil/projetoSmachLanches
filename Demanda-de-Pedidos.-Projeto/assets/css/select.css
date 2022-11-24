@@ -1,0 +1,21 @@
+.selectMain{
+    height: 37px;
+    width: 100px;
+    padding:0px 20px 0px 10px;
+    border-radius:5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(/assets/img/sort-down.png) no-repeat center right 5px ;
+    background-size: 15px;
+    border: 1px solid var(--cor-principal-10);
+    background-color: var(--cor-principal-10);
+    color: var(--cor-principal-60);
+    font-size: 16px;
+    font-family: 'Barlow';
+}
+.selectMain:focus-within{
+    background: url(/assets/img/sort-up.png) no-repeat  center right 5px ;
+    background-size: 15px;
+    outline: none;
+}
+
