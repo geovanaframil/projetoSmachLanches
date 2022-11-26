@@ -41,6 +41,37 @@ aside {
   justify-content: center;
 }
 
+#btnSectionOrdersAndProducts {
+  display: flex;
+  flex-direction: column;
+}
+
+#btnSectionOrders,
+#btnSectionProducts {
+  height: 54px;
+  font-family: "Barlow";
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--colors-txt-primary);
+  background-color: transparent;
+  border: none;
+}
+
+#btnSectionOrders {
+  border-top: 1px solid var(--colors-line);
+  border-bottom: 1px solid var(--colors-line);
+}
+
+#btnSectionProducts {
+  border-bottom: 1px solid var(--colors-line);
+}
+
+#btnSectionOrders:hover, #btnSectionProducts:hover {
+  color: var(--color-txt-fourth);
+  background-color: #FFF4EB;
+  cursor: pointer;
+}
+
 .operation-data {
   font-family: "Barlow";
   font-weight: 500;
