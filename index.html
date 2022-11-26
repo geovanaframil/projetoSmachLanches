@@ -207,7 +207,7 @@
         </div>
       </div>
 
-      <div class="active thirdSection">
+      <div class="active main thirdSection">
         <header>
           <div class="titleHeader">
             <p>Todos os produtos</p>
@@ -216,17 +216,51 @@
 
         <section>
           <div class="createProductSection">
-
             <div class="inputProductCode">
               <label for="productCode">Cód. Produto</label>
-              <input type="number" id="productCode" placeholder="00000" />
+              <input
+                type="number"
+                id="productCode"
+                placeholder="00000"
+                readonly
+              />
             </div>
 
             <div class="inputProductName">
               <label for="productName">Produto</label>
-              <input type="text" id="productName" placeholder="Nome do produto">
+              <input
+                type="text"
+                id="productName"
+                placeholder="Nome do produto"
+              />
+            </div>
+
+            <div class="inputProductPrice">
+              <label for="productPrice">Preço</label>
+              <input type="number" id="productPrice" placeholder="R$00.00" />
             </div>
           </div>
+
+          <div class="sectionSaveProduct">
+            <button id="btnSaveProduct">
+              <img src="assets/img/Icons/plusSign.png"/>Salvar Produto
+            </button>
+          </div>
+        </section>
+
+        <section class="snackTable">
+          <table>
+            <thead class="headerTable">
+              <tr>
+                <td>Cód. Produto</td>
+                <td>Nome</td>
+                <td>Preço</td>
+                <td>Ação</td>
+              </tr>
+            </thead>
+
+            <tbody class="tableBody"></tbody>
+          </table>
         </section>
       </div>
     </section>

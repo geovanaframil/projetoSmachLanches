@@ -66,9 +66,10 @@ aside {
   border-bottom: 1px solid var(--colors-line);
 }
 
-#btnSectionOrders:hover, #btnSectionProducts:hover {
+#btnSectionOrders:hover,
+#btnSectionProducts:hover {
   color: var(--color-txt-fourth);
-  background-color: #FFF4EB;
+  background-color: #fff4eb;
   cursor: pointer;
 }
 
@@ -288,6 +289,10 @@ td button:hover {
   size: 1rem;
 }
 
+input:read-only {
+  outline: none;
+}
+
 input[type="radio"] {
   appearance: none;
   background-color: transparent;
@@ -363,7 +368,8 @@ input[type="number"] {
   margin-bottom: 16px;
 }
 
-.addProduct label {
+.addProduct label,
+.createProductSection label {
   display: block;
   font-family: "Inter";
   font-weight: 400;
@@ -372,7 +378,8 @@ input[type="number"] {
   margin-bottom: 5px;
 }
 
-#qty {
+#qty,
+#productCode {
   width: 136px;
   height: 36px;
   border-radius: 8px;
@@ -402,14 +409,15 @@ input[type="number"] {
   padding-left: 16px;
 }
 
-.add {
+.add, .sectionSaveProduct {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 32px;
 }
 
 .add button,
-.save button {
+.save button,
+#btnSaveProduct {
   height: 2.2rem;
   border-radius: 8px;
   border: none;
@@ -421,7 +429,8 @@ input[type="number"] {
   color: var(--colors-txt-button);
 }
 
-.add button {
+.add button,
+#btnSaveProduct {
   display: flex;
   width: 15rem;
   align-items: center;
@@ -488,6 +497,38 @@ footer {
   color: var(--colors-txt-secudary);
   text-align: center;
   background-color: var(--color-background);
+}
+
+.createProductSection {
+  display: grid;
+  grid-template-columns: 15% 59.3% 20%;
+  gap: 2%;
+  margin-bottom: 16px;
+}
+
+#productCode {
+  background-color: var(--colors-input-background);
+  border: 1px solid var(--colors-input-border);
+}
+
+#productName {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+  padding-left: 16px;
+  border: 1px solid var(--colors-input-border);
+}
+
+#productPrice {
+  width: 182px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--colors-input-border);
+  padding-left: 16px;
+}
+
+#btnSaveProduct {
+  width: 11rem;
 }
 
 @media print {
