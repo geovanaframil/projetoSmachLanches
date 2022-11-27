@@ -99,6 +99,7 @@ let newOrder = () => {
 
 let sectionOrders = () => {
   sectionNewOrder.setAttribute("class", "active main");
+  sectionCreateProducts.setAttribute("class", "inactive");
 };
 
 let sectionProducts = () => {
@@ -391,4 +392,4 @@ selectStatus.addEventListener("change", filterOrdersByStatus);
 firstCheckbox.addEventListener("click", selectAllCheckbox);
 btnDelete.addEventListener("click", deleteOrder);
 btnSectionOrders.addEventListener("click", sectionOrders);
-btnSectionProducts.addEventListener('click', sectionProducts)
+btnSectionProducts.addEventListener("click", sectionProducts);
