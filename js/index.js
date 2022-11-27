@@ -77,6 +77,10 @@ let trDefaultImage = document.querySelector(".imgBasket");
 let btnCancel = document.querySelector("#cancel");
 let btnSave = document.querySelector("#save");
 
+let btnSectionOrders = document.querySelector("#btnSectionOrders");
+let btnSectionProducts = document.querySelector("#btnSectionProducts");
+let sectionCreateProducts = document.querySelector(".thirdSection");
+
 let objectProduct = undefined;
 let arrayMultiply = [];
 let arrayItemsOrder = [];
@@ -91,6 +95,15 @@ let newOrder = () => {
   sum = 0;
   sectionNewOrder.setAttribute("class", "inactive");
   sectionRegisterProduct.setAttribute("class", "active main");
+};
+
+let sectionOrders = () => {
+  sectionNewOrder.setAttribute("class", "active main");
+};
+
+let sectionProducts = () => {
+  sectionNewOrder.setAttribute("class", "inactive");
+  sectionCreateProducts.setAttribute("class", "active main thirdSection");
 };
 
 let consumptionType = () => {
@@ -377,3 +390,5 @@ selectType.addEventListener("change", filterOrdersByType);
 selectStatus.addEventListener("change", filterOrdersByStatus);
 firstCheckbox.addEventListener("click", selectAllCheckbox);
 btnDelete.addEventListener("click", deleteOrder);
+btnSectionOrders.addEventListener("click", sectionOrders);
+btnSectionProducts.addEventListener('click', sectionProducts)
