@@ -12,7 +12,7 @@ body {
 
 .content {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 25% 71%;
   flex: 1;
 }
 
@@ -39,6 +39,7 @@ aside {
   margin-top: 3rem;
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 #btnSectionOrdersAndProducts {

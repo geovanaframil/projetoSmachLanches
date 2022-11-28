@@ -1,3 +1,10 @@
+import createEvents from './assets/js/events/events.mjs';
+createEvents()
+function test(){
+  alert('oe')
+  console.log('oe')
+}
+
 let menu = [
   {
     code: 1001,
@@ -381,15 +388,5 @@ let deleteOrder = () => {
   sectionBtnDelete.setAttribute("class", "inactive");
 };
 
-btnNewOrder.addEventListener("click", newOrder);
-btnSearch.addEventListener("click", valueInputSearch);
-btnAdd.addEventListener("click", addProduct);
-btnCancel.addEventListener("click", cancelOrder);
-btnSave.addEventListener("click", saveOrder);
-btnPrint.addEventListener("click", printBtn);
-selectType.addEventListener("change", filterOrdersByType);
-selectStatus.addEventListener("change", filterOrdersByStatus);
-firstCheckbox.addEventListener("click", selectAllCheckbox);
-btnDelete.addEventListener("click", deleteOrder);
-btnSectionOrders.addEventListener("click", sectionOrders);
-btnSectionProducts.addEventListener("click", sectionProducts);
+
+createEvents()

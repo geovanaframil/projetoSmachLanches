@@ -14,18 +14,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <script src="js/index.js" defer></script>
+    <script src="./assets/js/events/events.mjs" defer type="module"></script>
+    <script src="./index.js" defer type="module"></script>
     <title>Smach Lanches</title>
   </head>
   <body>
     <section class="content">
       <aside>
-        <div class="logo">
-          <img src="assets/img/logo/logo.png" alt="Logo Smach Lanches" />
-        </div>
-        <div id="btnSectionOrdersAndProducts">
-          <button id="btnSectionOrders">Pedidos</button>
-          <button id="btnSectionProducts">Produtos</button>
+        <div class="aside_topBar">
+          <div class="logo">
+            <img src="assets/img/logo/logo.png" alt="Logo Smach Lanches" />
+          </div>
+          <div id="btnSectionOrdersAndProducts">
+            <button id="btnSectionOrders">Pedidos</button>
+            <button id="btnSectionProducts">Produtos</button>
+          </div>
         </div>
         <div class="operation-data">
           <p>Operador: Mariluce</p>
