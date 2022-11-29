@@ -1,4 +1,6 @@
-import createEvents from './assets/js/events/events.mjs';
+import createEvents from "./assets/js/events/events.mjs";
+import * as productServices from "./assets/js/productServices.mjs";
+productServices.saveProduct(10, "OI", 10)
 export let menu = [
   {
     code: 1001,
@@ -52,31 +54,31 @@ export let menu = [
   },
 ];
 
- export let sectionNewOrder = document.querySelector(".active");
- export let sectionRegisterProduct = document.querySelector(".secondSection");
- export let btnNewOrder = document.querySelector(".newOrder");
- export let userInteractionSection = document.querySelector(".headerFunctions");
- export let selectType = document.querySelector("#selectType");
- export let selectStatus = document.querySelector("#selectStatus");
- export let btnPrint = document.querySelector(".print");
- export let bodyTable = document.querySelector("#tableBody");
- export let firstCheckbox = document.querySelector("#checkboxHeader");
- export let trImage = document.querySelector(".imgBasket-0");
- export let sectionBtnDelete = document.querySelector(".delete");
- export let btnDelete = document.querySelector("#btnDelete");
+export let sectionNewOrder = document.querySelector(".active");
+export let sectionRegisterProduct = document.querySelector(".secondSection");
+export let btnNewOrder = document.querySelector(".newOrder");
+export let userInteractionSection = document.querySelector(".headerFunctions");
+export let selectType = document.querySelector("#selectType");
+export let selectStatus = document.querySelector("#selectStatus");
+export let btnPrint = document.querySelector(".print");
+export let bodyTable = document.querySelector("#tableBody");
+export let firstCheckbox = document.querySelector("#checkboxHeader");
+export let trImage = document.querySelector(".imgBasket-0");
+export let sectionBtnDelete = document.querySelector(".delete");
+export let btnDelete = document.querySelector("#btnDelete");
 
- export let inputRadio = document.getElementsByName("options");
- export let inputSearchProduct = document.querySelector("#inputSearch");
- export let btnSearch = document.querySelector(".search");
- export let inputQty = document.querySelector("#qty");
- export let inputProduct = document.querySelector("#product");
- export let inputPrice = document.querySelector("#price");
- export let btnAdd = document.querySelector("#add");
- export let tableBody = document.querySelector(".tableBody");
- export let tableFooter = document.querySelector(".tableFooter");
- export let trDefaultImage = document.querySelector(".imgBasket");
- export let btnCancel = document.querySelector("#cancel");
- export let btnSave = document.querySelector("#save");
+export let inputRadio = document.getElementsByName("options");
+export let inputSearchProduct = document.querySelector("#inputSearch");
+export let btnSearch = document.querySelector(".search");
+export let inputQty = document.querySelector("#qty");
+export let inputProduct = document.querySelector("#product");
+export let inputPrice = document.querySelector("#price");
+export let btnAdd = document.querySelector("#add");
+export let tableBody = document.querySelector(".tableBody");
+export let tableFooter = document.querySelector(".tableFooter");
+export let trDefaultImage = document.querySelector(".imgBasket");
+export let btnCancel = document.querySelector("#cancel");
+export let btnSave = document.querySelector("#save");
 
 export let objectProduct = undefined;
 export let arrayMultiply = [];
@@ -87,8 +89,7 @@ export let filteredByStatus = [];
 export let numberOrder = 10000;
 export let sum = 0;
 
-export let arrayForEach = {}
-
+export let arrayForEach = {};
 
 export let consumptionType = () => {
   for (let i = 0; i < inputRadio.length; i++) {
@@ -150,7 +151,6 @@ export let changeStatusButton = (orderNumber) => {
 export let updateOrderTable = (array = arrayOrders) => {
   let trTds = "";
   array.forEach((element) => {
-    
     trTds += `<tr id='numberOrder_'${element.numberOrder}>`;
     trTds += `<td><input type="checkbox" id='checkbox-${element.numberOrder}' class="selectCheckbox"> ${element.numberOrder}</td>`;
     trTds += "<td>";
@@ -165,11 +165,9 @@ export let updateOrderTable = (array = arrayOrders) => {
     })}</td>`;
     trTds += `<td><button class='btnStatus ${validStatus(
       element.status
-    )}' class="changeStatusButton">${
-      element.status
-    }</button></td>`;
+    )}' class="changeStatusButton">${element.status}</button></td>`;
     trTds += "</tr>";
-    return arrayForEach = element
+    return (arrayForEach = element);
   });
 
   bodyTable.innerHTML = trTds;
@@ -192,7 +190,6 @@ export let validStatus = (status) => {
 };
 
 export let filterOrdersByType = () => {
-
   let valueSelectType = selectType.value;
 
   if (valueSelectType == "type") {
@@ -236,6 +233,4 @@ export let selectCheckbox = () => {
   sectionBtnDelete.setAttribute("class", "active delete");
 };
 
-
-
-createEvents()
+createEvents();
