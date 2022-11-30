@@ -31,6 +31,36 @@ const saveProduct = (cod, name, price) => {
   });
 };
 
+const updateProduct = (id) => {
+  const product = {
+    id: id,
+    nome: "Oi",
+    preco: 10.5,
+  };
+  
+  const headers = new Headers();
+  headers.append("content-type", "application/json");
+
+  const initUpdateProduct = {
+    headers: headers,
+    method: "POST",
+    body: JSON.stringify(product),
+  };
+
+  let answer;
+  fetch(`${url}/produto/${product.id}/atualizar`, initUpdateProduct).then(
+    (response) => {
+      if (response.ok) {
+        answer = response.json();
+        console.log(answer)
+        alert("Sucesso");
+      } else {
+        alert("Erro");
+      }
+    }
+  );
+};
+
 const searchAllProduct = () => {
   const headers = new Headers();
 
@@ -47,6 +77,7 @@ const searchAllProduct = () => {
 
 export {
   searchAllProduct,
+  updateProduct,
   saveProduct,
   inputProductName,
   inputproductPrice,
