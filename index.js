@@ -1,7 +1,7 @@
 import createEvents from "./assets/js/events/events.mjs";
 import * as productServices from "./assets/js/productServers.mjs";
-productServices.saveProduct(13, "OI", 10)
-productServices.updateProduct(11)
+//productServices.saveProduct(13, "OI", 10)
+productServices.deleteProduct(11)
 productServices.searchAllProduct()
 export let menu = [
   {

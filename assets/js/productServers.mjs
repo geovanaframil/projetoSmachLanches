@@ -20,11 +20,10 @@ const saveProduct = (cod, name, price) => {
     body: JSON.stringify(product),
   };
 
-  let answer;
   fetch(`${url}/produto`, initProduct).then((response) => {
     if (response.ok) {
-      answer = response.json();
       alert("Sucesso");
+      return response.json();
     } else {
       alert("Erro");
     }
@@ -37,7 +36,7 @@ const updateProduct = (id) => {
     nome: "Oi",
     preco: 10.5,
   };
-  
+
   const headers = new Headers();
   headers.append("content-type", "application/json");
 
@@ -52,7 +51,34 @@ const updateProduct = (id) => {
     (response) => {
       if (response.ok) {
         answer = response.json();
-        console.log(answer)
+        console.log(answer);
+        alert("Sucesso");
+      } else {
+        alert("Erro");
+      }
+    }
+  );
+};
+
+const deleteProduct = (id) => {
+  const product = {
+    id: id,
+    nome: "Oi",
+    preco: 10.5,
+  };
+
+  const headers = new Headers();
+  headers.append("content-type", "application/json");
+
+  const initDeleteProduct = {
+    headers: headers,
+    method: "POST",
+    body: JSON.stringify(product),
+  };
+
+  fetch(`${url}/produto/${product.id}/deletar`, initDeleteProduct).then(
+    (response) => {
+      if (response.ok) {
         alert("Sucesso");
       } else {
         alert("Erro");
@@ -79,6 +105,7 @@ export {
   searchAllProduct,
   updateProduct,
   saveProduct,
+  deleteProduct,
   inputProductName,
   inputproductPrice,
   url,
