@@ -134,7 +134,7 @@ const showProductsTable = (products) => {
       style: "currency",
       currency: "BRL",
     })}</td>`;
-    template += `<td><button class="edit"><img src="./assets/img/Icons/pencil.png"></button><button class="delete"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
+    template += `<td><button class="edit code${element.id}"><img src="./assets/img/Icons/pencil.png"></button><button class="delete code${element.id}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
     template += `<tr>`;
     idProduct = element.id + 1;
     tableBodyThirdySection.innerHTML = template;
