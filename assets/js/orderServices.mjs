@@ -32,6 +32,42 @@ const createNewOrder = () => {
   });
 };
 
+const deleteOrder = (id) => {
+  const order = {
+    id: 100000,
+    tipo: "delivery",
+    total: 200.5,
+    status: "Recebido",
+    produtos: [
+      {
+        idProduto: 10,
+        nome: "Pizza",
+        quantidade: 7,
+        valor: 200.5,
+      },
+    ],
+  };
+
+  const headers = new Headers();
+  headers.append("content-type", "application/json");
+
+  const initDeleteOrder = {
+    headers: headers,
+    method: "POST",
+    body: JSON.stringify(order),
+  };
+
+  fetch(`${url}/pedido/${order.id}/deletar`, initDeleteOrder).then(
+    (response) => {
+      if (response.ok) {
+        alert("Sucesso");
+      } else {
+        alert("Erro");
+      }
+    }
+  );
+};
+
 const searchAllOrders = () => {
   const headers = new Headers();
 
@@ -46,4 +82,4 @@ const searchAllOrders = () => {
     });
 };
 
-export { createNewOrder, searchAllOrders };
+export { createNewOrder, deleteOrder, searchAllOrders };

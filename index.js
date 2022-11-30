@@ -3,6 +3,7 @@ import * as productServices from "./assets/js/productServers.mjs";
 import * as orderServices from "./assets/js/orderServices.mjs";
 productServices.serachProductById(14);
 productServices.searchAllProduct();
+orderServices.deleteOrder(100000)
 orderServices.searchAllOrders();
 
 export let menu = [
