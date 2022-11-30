@@ -1,9 +1,7 @@
 import createEvents from "./assets/js/events/events.mjs";
 import * as productServices from "./assets/js/productServers.mjs";
 import * as orderServices from "./assets/js/orderServices.mjs";
-productServices.serachProductById(14);
 productServices.searchAllProduct();
-orderServices.deleteOrder(100000)
 orderServices.searchAllOrders();
 
 export let menu = [
@@ -84,6 +82,16 @@ export let tableFooter = document.querySelector(".tableFooter");
 export let trDefaultImage = document.querySelector(".imgBasket");
 export let btnCancel = document.querySelector("#cancel");
 export let btnSave = document.querySelector("#save");
+
+let thirdySection = document.querySelector(".thirdSection");
+let btnSectionProdutos = document.querySelector("#btnSectionProducts");
+
+let exibeSecaoProdutos = () => {
+  sectionNewOrder.setAttribute("class", "inactive");
+  thirdySection.setAttribute("class", "active main thirdSection");
+};
+
+btnSectionProdutos.addEventListener("click", exibeSecaoProdutos);
 
 export let objectProduct = undefined;
 export let arrayMultiply = [];

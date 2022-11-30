@@ -1,12 +1,22 @@
 const inputProductName = document.querySelector("#productName");
-const inputproductPrice = document.querySelector("#productPrice");
+const inputProductPrice = document.querySelector("#productPrice");
+const inputCodProduct = document.querySelector("#productCode");
+const btnSaveProduct = document.querySelector("#btnSaveProduct");
+const tableBodyThirdySection = document.querySelector(
+  ".tableBodyThirdySection"
+);
 const url = "http://localhost:3000";
 
-const saveProduct = (id, name, price) => {
+let cleanForm = () => {
+  inputProductName.value = "";
+  inputProductPrice.value = "";
+};
+
+const saveProduct = (id) => {
   const product = {
     id: id,
-    nome: name,
-    preco: price,
+    nome: inputProductName.value,
+    preco: inputProductPrice.value,
   };
 
   const headers = new Headers();
@@ -21,12 +31,14 @@ const saveProduct = (id, name, price) => {
 
   fetch(`${url}/produto`, initProduct).then((response) => {
     if (response.ok) {
-      alert("Sucesso");
       return response.json();
     } else {
       alert("Erro");
     }
   });
+
+  cleanForm();
+  searchAllProduct();
 };
 
 const updateProduct = (id) => {
@@ -105,6 +117,7 @@ const serachProductById = (id) => {
 };
 
 const searchAllProduct = () => {
+  let template = "";
   const headers = new Headers();
 
   fetch(`${url}/produto/todos`, { headers: headers, mode: "cors" })
@@ -113,10 +126,20 @@ const searchAllProduct = () => {
     })
     .then((jsonData) => {
       jsonData.forEach((element) => {
-        console.log(element.id, element.nome, element.preco);
+        template += `<tr>`;
+        template += `<td>${element.id}</td>`;
+        template += `<td>${element.nome}</td>`;
+        template += `<td>${element.preco}</td>`;
+        template += `<td><button class="edit"><img src="./assets/img/Icons/pencil.png"></button><button class="delete"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
+        template += `<tr>`;
+        tableBodyThirdySection.innerHTML = template;
       });
     });
 };
+
+searchAllProduct();
+
+btnSaveProduct.addEventListener("click", saveProduct);
 
 export {
   searchAllProduct,
@@ -125,6 +148,6 @@ export {
   deleteProduct,
   serachProductById,
   inputProductName,
-  inputproductPrice,
+  inputProductPrice,
   url,
 };

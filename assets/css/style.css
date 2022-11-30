@@ -195,13 +195,15 @@ table {
 
 .headerTable td,
 #tableBody td,
-.tableBody td {
+.tableBody td,
+.tableBodyThirdySection td {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .tableBody,
-#tableBody {
+#tableBody,
+.tableBodyThirdySection {
   font-family: "Inter";
   font-weight: 500;
   font-size: 1rem;
