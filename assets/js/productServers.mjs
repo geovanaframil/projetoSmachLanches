@@ -129,7 +129,10 @@ const searchAllProduct = () => {
         template += `<tr>`;
         template += `<td>${element.id}</td>`;
         template += `<td>${element.nome}</td>`;
-        template += `<td>${element.preco}</td>`;
+        template += `<td>${parseFloat(element.preco).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        })}</td>`;
         template += `<td><button class="edit"><img src="./assets/img/Icons/pencil.png"></button><button class="delete"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
         template += `<tr>`;
         tableBodyThirdySection.innerHTML = template;
