@@ -1,8 +1,6 @@
 import createEvents from "./assets/js/events/events.mjs";
 import * as productServices from "./assets/js/productServers.mjs";
 import * as orderServices from "./assets/js/orderServices.mjs";
-productServices.searchAllProduct();
-orderServices.searchAllOrders();
 
 export let menu = [
   {
