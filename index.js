@@ -1,8 +1,10 @@
 import createEvents from "./assets/js/events/events.mjs";
 import * as productServices from "./assets/js/productServers.mjs";
-productServices.saveProduct(14, "Pessego", 1.5);
+import * as orderServices from "./assets/js/orderServices.mjs";
 productServices.serachProductById(14);
 productServices.searchAllProduct();
+orderServices.searchAllOrders();
+
 export let menu = [
   {
     code: 1001,
