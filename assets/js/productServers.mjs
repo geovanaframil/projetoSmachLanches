@@ -1,11 +1,10 @@
-const btnSaveNewProduct = document.querySelector("#save");
 const inputProductName = document.querySelector("#productName");
 const inputproductPrice = document.querySelector("#productPrice");
 const url = "http://localhost:3000";
 
-const saveProduct = (cod, name, price) => {
+const saveProduct = (id, name, price) => {
   const product = {
-    id: cod,
+    id: id,
     nome: name,
     preco: price,
   };
@@ -87,6 +86,24 @@ const deleteProduct = (id) => {
   );
 };
 
+const serachProductById = (id) => {
+  const headers = new Headers();
+
+  const product = {
+    id: id,
+    nome: "",
+    preco: 0,
+  };
+
+  fetch(`${url}/produto/${product.id}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((jsonData) => {
+      console.log(jsonData);
+    });
+};
+
 const searchAllProduct = () => {
   const headers = new Headers();
 
@@ -106,6 +123,7 @@ export {
   updateProduct,
   saveProduct,
   deleteProduct,
+  serachProductById,
   inputProductName,
   inputproductPrice,
   url,

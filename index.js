@@ -1,8 +1,8 @@
 import createEvents from "./assets/js/events/events.mjs";
 import * as productServices from "./assets/js/productServers.mjs";
-//productServices.saveProduct(13, "OI", 10)
-productServices.deleteProduct(11)
-productServices.searchAllProduct()
+productServices.saveProduct(14, "Pessego", 1.5);
+productServices.serachProductById(14);
+productServices.searchAllProduct();
 export let menu = [
   {
     code: 1001,
