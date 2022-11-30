@@ -5,6 +5,9 @@ const btnSaveProduct = document.querySelector("#btnSaveProduct");
 const tableBodyThirdySection = document.querySelector(
   ".tableBodyThirdySection"
 );
+
+let idProduct = 1000;
+
 const url = "http://localhost:3000";
 
 let cleanForm = () => {
@@ -14,7 +17,7 @@ let cleanForm = () => {
 
 const saveProduct = (id) => {
   const product = {
-    id: id,
+    id: idProduct,
     nome: inputProductName.value,
     preco: inputProductPrice.value,
   };
@@ -29,13 +32,18 @@ const saveProduct = (id) => {
     body: JSON.stringify(product),
   };
 
-  fetch(`${url}/produto`, initProduct).then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      alert("Erro");
-    }
-  });
+  fetch(`${url}/produto`, initProduct)
+    .then((response) => {
+      if (response.ok) {
+        alert("Sucesso! Produto cadastrado");
+        return response.json();
+      } else {
+        throw new Error("ERRO! Produto já cadastrado");
+      }
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
 
   cleanForm();
   searchAllProduct();
@@ -116,8 +124,24 @@ const serachProductById = (id) => {
     });
 };
 
-const searchAllProduct = () => {
+const showProductsTable = (products) => {
   let template = "";
+  products.forEach((element) => {
+    template += `<tr>`;
+    template += `<td>${element.id}</td>`;
+    template += `<td>${element.nome}</td>`;
+    template += `<td>${parseFloat(element.preco).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</td>`;
+    template += `<td><button class="edit code${element.id}"><img src="./assets/img/Icons/pencil.png"></button><button class="delete code${element.id}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
+    template += `<tr>`;
+    idProduct = element.id + 1;
+    tableBodyThirdySection.innerHTML = template;
+  });
+};
+
+const searchAllProduct = () => {
   const headers = new Headers();
 
   fetch(`${url}/produto/todos`, { headers: headers, mode: "cors" })
@@ -125,15 +149,9 @@ const searchAllProduct = () => {
       return response.json();
     })
     .then((jsonData) => {
-      jsonData.forEach((element) => {
-        template += `<tr>`;
-        template += `<td>${element.id}</td>`;
-        template += `<td>${element.nome}</td>`;
-        template += `<td>${element.preco}</td>`;
-        template += `<td><button class="edit"><img src="./assets/img/Icons/pencil.png"></button><button class="delete"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
-        template += `<tr>`;
-        tableBodyThirdySection.innerHTML = template;
-      });
+      showProductsTable(jsonData);
+      inputCodProduct.setAttribute("placeholder", idProduct);
+      return idProduct;
     });
 };
 

@@ -504,7 +504,7 @@ footer {
 
 .createProductSection {
   display: grid;
-  grid-template-columns: 15% 59.3% 20%;
+  grid-template-columns: 15% 61% 20%;
   gap: 2%;
   margin-bottom: 16px;
 }
@@ -532,6 +532,11 @@ footer {
 
 #btnSaveProduct {
   width: 11rem;
+}
+
+.edit, .delete {
+  border: none;
+  background-color: transparent;
 }
 
 @media print {
