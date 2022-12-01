@@ -15,7 +15,7 @@ let cleanForm = () => {
   inputProductPrice.value = "";
 };
 
-const saveProduct = (id) => {
+const saveProduct = () => {
   const product = {
     id: idProduct,
     nome: inputProductName.value,
@@ -50,22 +50,6 @@ const saveProduct = (id) => {
 };
 
 const updateProduct = (id) => {
-  const product = {
-    id: id,
-    nome: "Oi",
-    preco: 10.5,
-  };
-
-  const headers = new Headers();
-  headers.append("content-type", "application/json");
-
-  const initUpdateProduct = {
-    headers: headers,
-    method: "POST",
-    body: JSON.stringify(product),
-  };
-
-  let answer;
   fetch(`${url}/produto/${product.id}/atualizar`, initUpdateProduct).then(
     (response) => {
       if (response.ok) {
@@ -126,15 +110,15 @@ const serachProductById = (id) => {
 
 const showProductsTable = (products) => {
   let template = "";
-  products.forEach((element) => {
-    template += `<tr>`;
-    template += `<td>${element.id}</td>`;
+  products.forEach((element, index) => {
+    template += `<tr id="tr_${index}">`;
+    template += `<td data-td="td_id">${element.id}</td>`;
     template += `<td>${element.nome}</td>`;
     template += `<td>${parseFloat(element.preco).toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     })}</td>`;
-    template += `<td><button class="edit code${element.id}"><img src="./assets/img/Icons/pencil.png"></button><button class="delete code${element.id}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
+    template += `<td><button class="edit"><img data-index="tr_${index}" src="./assets/img/Icons/pencil.png"/></button><button class="delete" data-index="tr_${index}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
     template += `<tr>`;
     idProduct = element.id + 1;
     tableBodyThirdySection.innerHTML = template;
@@ -155,6 +139,16 @@ const searchAllProduct = () => {
     });
 };
 
+const editProductForm = (button) => {
+  let idElement = button.target.dataset.index;
+  let trProduct = document.querySelector(`#${idElement}`);
+  let tdProducts = trProduct.querySelectorAll("td");
+  inputCodProduct.setAttribute("placeholder", `${tdProducts[0].innerText}`);
+  inputProductName.setAttribute("placeholder", `${tdProducts[1].innerText}`);
+  inputProductPrice.setAttribute("placeholder", `${tdProducts[2].innerText}`);
+  trProduct.remove();
+};
+
 searchAllProduct();
 
 btnSaveProduct.addEventListener("click", saveProduct);
@@ -168,4 +162,5 @@ export {
   inputProductName,
   inputProductPrice,
   url,
+  editProductForm,
 };
