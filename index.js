@@ -86,9 +86,12 @@ let btnSectionProdutos = document.querySelector("#btnSectionProducts");
 let exibeSecaoProdutos = () => {
   sectionNewOrder.setAttribute("class", "inactive");
   thirdySection.setAttribute("class", "active main thirdSection");
-  [...document.querySelectorAll(".edit")].forEach(element => {
+  [...document.querySelectorAll(".edit")].forEach((element) => {
     element.addEventListener("click", productServers.editProductForm);
-  })
+  });
+  [...document.querySelectorAll(".delete")].forEach((element) => {
+    element.addEventListener("click", productServers.btnDeleteProduct);
+  });
 };
 
 btnSectionProdutos.addEventListener("click", exibeSecaoProdutos);

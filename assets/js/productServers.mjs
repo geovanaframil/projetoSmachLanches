@@ -66,7 +66,6 @@ const updateProduct = (product, initProduct) => {
     .then(async (response) => {
       if (response.ok) {
         answer = await response.json();
-        console.log(answer);
         alert("Produto editado com sucesso!");
       } else {
         throw new Error("Desculpe, algo não saiu como esperado");
@@ -78,31 +77,18 @@ const updateProduct = (product, initProduct) => {
 };
 
 const deleteProduct = (id) => {
-  //Não entendi como prosseguir com essa função
-  const product = {
-    id: id,
-    nome: "Oi",
-    preco: 10.5,
-  };
-
-  const headers = new Headers();
-  headers.append("content-type", "application/json");
-
-  const initDeleteProduct = {
-    headers: headers,
-    method: "POST",
-    body: JSON.stringify(product),
-  };
-
-  fetch(`${url}/produto/${product.id}/deletar`, initDeleteProduct).then(
-    (response) => {
+  fetch(`${url}/produto/${id}/deletar`, { method: "POST" })
+    .then((response) => {
       if (response.ok) {
         alert("Sucesso");
+        return response.json();
       } else {
-        alert("Erro");
+        throw new Error("Não foi possível deletar o elemento selecionado");
       }
-    }
-  );
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
 };
 
 const serachProductById = (id) => {
@@ -131,13 +117,16 @@ const showProductsTable = (products) => {
     template += `<td data-td="td_id">${element.id}</td>`;
     template += `<td>${element.nome}</td>`;
     template += `<td>${element.preco}</td>`;
-    template += `<td><button class="edit"><img data-index="tr_${index}" src="./assets/img/Icons/pencil.png"/></button><button class="delete" data-index="tr_${index}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
+    template += `<td><button class="edit"><img data-index="tr_${index}" src="./assets/img/Icons/pencil.png"/></button><button class="delete"><img data-index="tr_${index}" src="./assets/img/Icons/grayTrash.png"></button></td>`;
     template += `<tr>`;
     idProduct = element.id + 1;
     tableBodyThirdySection.innerHTML = template;
   });
   [...document.querySelectorAll(".edit")].forEach((element) => {
     element.addEventListener("click", editProductForm);
+  });
+  [...document.querySelectorAll(".delete")].forEach((element) => {
+    element.addEventListener("click", btnDeleteProduct);
   });
   inputCodProduct.value = idProduct;
 };
@@ -157,13 +146,26 @@ const searchAllProduct = () => {
 };
 
 const editProductForm = (button) => {
-  //Não entendi muito bem o que aconteceu aqui
   let idElement = button.target.dataset.index;
   let trProduct = document.querySelector(`#${idElement}`);
   let tdProducts = trProduct.querySelectorAll("td");
   inputCodProduct.value = tdProducts[0].innerText;
   inputProductName.value = tdProducts[1].innerText;
-  inputProductPrice.value = tdProducts[2].innerText; //Retorna um erro de que não pode ser usado parsed, não sei como resolver
+  inputProductPrice.value = tdProducts[2].innerText;
+};
+
+const btnDeleteProduct = (button) => {
+  let idElementDelete = button.target.dataset.index;
+  let trProduct = document.querySelector(`#${idElementDelete}`);
+  let tdProducts = trProduct.querySelectorAll("td");
+  let idProduct = tdProducts[0].innerText;
+  console.log(idProduct);
+  let msg = "Deseja realmente exluir esse produto?";
+
+  if (confirm(msg) == true) {
+    deleteProduct(idProduct);
+    searchAllProduct();
+  }
 };
 
 searchAllProduct();
@@ -180,4 +182,5 @@ export {
   inputProductPrice,
   url,
   editProductForm,
+  btnDeleteProduct,
 };
