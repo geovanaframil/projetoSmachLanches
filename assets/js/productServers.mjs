@@ -80,7 +80,7 @@ const deleteProduct = (id) => {
   fetch(`${url}/produto/${id}/deletar`, { method: "POST" })
     .then((response) => {
       if (response.ok) {
-        alert("Sucesso");
+        alert("Produto excluído com sucesso");
         return response.json();
       } else {
         throw new Error("Não foi possível deletar o elemento selecionado");
@@ -159,7 +159,6 @@ const btnDeleteProduct = (button) => {
   let trProduct = document.querySelector(`#${idElementDelete}`);
   let tdProducts = trProduct.querySelectorAll("td");
   let idProduct = tdProducts[0].innerText;
-  console.log(idProduct);
   let msg = "Deseja realmente exluir esse produto?";
 
   if (confirm(msg) == true) {
