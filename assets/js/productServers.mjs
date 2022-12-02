@@ -5,6 +5,8 @@ const btnSaveProduct = document.querySelector("#btnSaveProduct");
 const tableBodyThirdySection = document.querySelector(
   ".tableBodyThirdySection"
 );
+const inputProductNameSecondSection = document.querySelector("#product");
+const inputProductPriceSecondSection = document.querySelector("#price");
 
 let idProduct = 1000;
 
@@ -100,7 +102,8 @@ const deleteProduct = (id) => {
 //Esse é teste ainda
 const showOrdersForm = (product) => {
   product.forEach((element) => {
-    console.log(element.nome, element.preco);
+    inputProductNameSecondSection.value = element.nome;
+    inputProductPriceSecondSection.value = element.preco;
   });
 };
 
@@ -139,7 +142,6 @@ const showProductsTable = (products) => {
   inputCodProduct.value = idProduct;
 };
 
-
 //Fetch que busca todos os produtos
 const searchAllProduct = () => {
   const headers = new Headers();
@@ -155,7 +157,6 @@ const searchAllProduct = () => {
     });
 };
 
-
 //Botão do editar
 const editProductForm = (button) => {
   let idElement = button.target.dataset.index;
@@ -165,7 +166,6 @@ const editProductForm = (button) => {
   inputProductName.value = tdProducts[1].innerText;
   inputProductPrice.value = tdProducts[2].innerText;
 };
-
 
 //Botão excluir
 const btnDeleteProduct = (button) => {
