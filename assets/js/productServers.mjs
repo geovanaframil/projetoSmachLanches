@@ -17,7 +17,7 @@ let cleanForm = () => {
 
 const saveProduct = () => {
   const product = {
-    id: idProduct,
+    id: parseInt(inputCodProduct.value),
     nome: inputProductName.value,
     preco: inputProductPrice.value,
   };
@@ -32,6 +32,19 @@ const saveProduct = () => {
     body: JSON.stringify(product),
   };
 
+  if (product.id !== idProduct) {
+    updateProduct(product, initProduct);
+  } else {
+    includeProducts(initProduct);
+  }
+
+  console.log(idProduct);
+  console.log(inputCodProduct.value);
+  cleanForm();
+  searchAllProduct();
+};
+
+const includeProducts = (initProduct) => {
   fetch(`${url}/produto`, initProduct)
     .then((response) => {
       if (response.ok) {
@@ -44,16 +57,14 @@ const saveProduct = () => {
     .catch((err) => {
       alert(err.message);
     });
-
-  cleanForm();
-  searchAllProduct();
 };
 
-const updateProduct = (id) => {
-  fetch(`${url}/produto/${product.id}/atualizar`, initUpdateProduct).then(
-    (response) => {
+const updateProduct = (product, initProduct) => {
+  let answer;
+  fetch(`${url}/produto/${product.id}/atualizar`, initProduct).then(
+    async (response) => {
       if (response.ok) {
-        answer = response.json();
+        answer = await response.json();
         console.log(answer);
         alert("Sucesso");
       } else {
@@ -123,6 +134,10 @@ const showProductsTable = (products) => {
     idProduct = element.id + 1;
     tableBodyThirdySection.innerHTML = template;
   });
+  [...document.querySelectorAll(".edit")].forEach((element) => {
+    element.addEventListener("click", editProductForm);
+  });
+  inputCodProduct.value = idProduct;
 };
 
 const searchAllProduct = () => {
@@ -143,10 +158,9 @@ const editProductForm = (button) => {
   let idElement = button.target.dataset.index;
   let trProduct = document.querySelector(`#${idElement}`);
   let tdProducts = trProduct.querySelectorAll("td");
-  inputCodProduct.setAttribute("placeholder", `${tdProducts[0].innerText}`);
-  inputProductName.setAttribute("placeholder", `${tdProducts[1].innerText}`);
-  inputProductPrice.setAttribute("placeholder", `${tdProducts[2].innerText}`);
-  trProduct.remove();
+  inputCodProduct.value = tdProducts[0].innerText;
+  inputProductName.value = tdProducts[1].innerText;
+  inputProductPrice.value = tdProducts[2].innerText;
 };
 
 searchAllProduct();
