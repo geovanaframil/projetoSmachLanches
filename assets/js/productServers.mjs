@@ -66,7 +66,8 @@ const updateProduct = (product, initProduct) => {
     .then(async (response) => {
       if (response.ok) {
         answer = await response.json();
-        alert("Produto editado com sucesso.");
+        console.log(answer);
+        alert("Sucesso");
       } else {
         throw new Error("Desculpe, algo não saiu como esperado");
       }
@@ -76,7 +77,7 @@ const updateProduct = (product, initProduct) => {
     });
 };
 
-const deleteProduct = (id) => {
+const deleteProduct = (id) => {//Não entendi como prosseguir com essa função
   const product = {
     id: id,
     nome: "Oi",
@@ -103,7 +104,7 @@ const deleteProduct = (id) => {
   );
 };
 
-const serachProductById = (id) => {
+const serachProductById = (id) => {//Esse tá funcionando teóricamente, ainda não consegui passar pra rodar junto com a tela
   const headers = new Headers();
 
   const product = {
@@ -153,13 +154,13 @@ const searchAllProduct = () => {
     });
 };
 
-const editProductForm = (button) => {
+const editProductForm = (button) => { //Não entendi muito bem o que aconteceu aqui
   let idElement = button.target.dataset.index;
   let trProduct = document.querySelector(`#${idElement}`);
   let tdProducts = trProduct.querySelectorAll("td");
   inputCodProduct.value = tdProducts[0].innerText;
   inputProductName.value = tdProducts[1].innerText;
-  inputProductPrice.value = tdProducts[2].innerText;
+  inputProductPrice.value = tdProducts[2].innerText;//Retorna um erro de que não pode ser usado parsed, não sei como resolver
 };
 
 searchAllProduct();

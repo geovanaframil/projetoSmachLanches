@@ -1,5 +1,7 @@
 const url = "http://localhost:3000";
 
+
+//Não entendi a parte de separar as responsabilidades por função e não comecei a fazer a parte de pedidos
 const createNewOrder = () => {
   const order = {
     id: 100004,
