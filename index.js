@@ -80,8 +80,16 @@ export let trDefaultImage = document.querySelector(".imgBasket");
 export let btnCancel = document.querySelector("#cancel");
 export let btnSave = document.querySelector("#save");
 
+let secondSection = document.querySelector(".secondSection");
+let btnSectionOrders = document.querySelector("#btnSectionOrders");
+
 let thirdySection = document.querySelector(".thirdSection");
 let btnSectionProdutos = document.querySelector("#btnSectionProducts");
+
+let showOrderSection = () => {
+  sectionNewOrder.setAttribute("class", "inactive");
+  secondSection.setAttribute("class", "active main secondSection");
+};
 
 let exibeSecaoProdutos = () => {
   sectionNewOrder.setAttribute("class", "inactive");
@@ -95,6 +103,7 @@ let exibeSecaoProdutos = () => {
 };
 
 btnSectionProdutos.addEventListener("click", exibeSecaoProdutos);
+btnSectionOrders.addEventListener("click", showOrderSection);
 
 export let objectProduct = undefined;
 export let arrayMultiply = [];

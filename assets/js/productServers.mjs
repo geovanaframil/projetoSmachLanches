@@ -10,11 +10,13 @@ let idProduct = 1000;
 
 const url = "http://localhost:3000";
 
+//Limpa o formulário assim que clicar no botão Salvar Produto
 let cleanForm = () => {
   inputProductName.value = "";
   inputProductPrice.value = "";
 };
 
+//Botão salvar produto, recebe o objeto da API com a chave e valor correspondete, faz o fetch com metodo POST na api e teste se o id do produto é diferente da variável idProduct que é atualizada sempre, se for diferente, vai retornar a atualização do produto e se for igual ,vai criar um novo
 const saveProduct = () => {
   const product = {
     id: parseInt(inputCodProduct.value),
@@ -46,6 +48,7 @@ const saveProduct = () => {
   searchAllProduct();
 };
 
+//Fetch que inclui todo produto novo na api
 const includeProducts = (initProduct) => {
   fetch(`${url}/produto`, initProduct)
     .then((response) => {
@@ -61,6 +64,7 @@ const includeProducts = (initProduct) => {
     });
 };
 
+//Fetch que atualiza produto já cadastrado na api
 const updateProduct = (product, initProduct) => {
   let answer;
   fetch(`${url}/produto/${product.id}/atualizar`, initProduct)
@@ -77,6 +81,7 @@ const updateProduct = (product, initProduct) => {
     });
 };
 
+//Fetch para deletar produto da api
 const deleteProduct = (id) => {
   fetch(`${url}/produto/${id}/deletar`, { method: "POST" })
     .then((response) => {
@@ -92,25 +97,27 @@ const deleteProduct = (id) => {
     });
 };
 
+//Esse é teste ainda
+const showOrdersForm = (product) => {
+  product.forEach((element) => {
+    console.log(element.nome, element.preco);
+  });
+};
+
+//Esse tbm é teste
 const serachProductById = (id) => {
-  //Esse tá funcionando teóricamente, ainda não consegui passar pra rodar junto com a tela
   const headers = new Headers();
 
-  const product = {
-    id: id,
-    nome: "",
-    preco: 0,
-  };
-
-  fetch(`${url}/produto/${product.id}`)
+  fetch(`${url}/produto/${id}`, { headers: headers, mode: "cors" })
     .then((response) => {
       return response.json();
     })
     .then((jsonData) => {
-      console.log(jsonData);
+      showOrdersForm(jsonData);
     });
 };
 
+//Exibe tabela renderizada no html da terceira seção (seção produto)
 const showProductsTable = (products) => {
   let template = "";
   products.forEach((element, index) => {
@@ -132,6 +139,8 @@ const showProductsTable = (products) => {
   inputCodProduct.value = idProduct;
 };
 
+
+//Fetch que busca todos os produtos
 const searchAllProduct = () => {
   const headers = new Headers();
 
@@ -146,6 +155,8 @@ const searchAllProduct = () => {
     });
 };
 
+
+//Botão do editar
 const editProductForm = (button) => {
   let idElement = button.target.dataset.index;
   let trProduct = document.querySelector(`#${idElement}`);
@@ -155,6 +166,8 @@ const editProductForm = (button) => {
   inputProductPrice.value = tdProducts[2].innerText;
 };
 
+
+//Botão excluir
 const btnDeleteProduct = (button) => {
   let idElementDelete = button.target.dataset.index;
   let trProduct = document.querySelector(`#${idElementDelete}`);
@@ -168,6 +181,7 @@ const btnDeleteProduct = (button) => {
   }
 };
 
+//Não pode apagar essa chamada, senão devolve um erro
 searchAllProduct();
 
 btnSaveProduct.addEventListener("click", saveProduct);
