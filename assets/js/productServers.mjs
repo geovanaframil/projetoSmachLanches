@@ -15,11 +15,14 @@ let cleanForm = () => {
   inputProductPrice.value = "";
 };
 
-const saveProduct = (id) => {
+const saveProduct = () => {
   const product = {
-    id: idProduct,
+    id: parseInt(inputCodProduct.value),
     nome: inputProductName.value,
-    preco: inputProductPrice.value,
+    preco: parseFloat(inputProductPrice.value).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }),
   };
 
   const headers = new Headers();
@@ -32,6 +35,17 @@ const saveProduct = (id) => {
     body: JSON.stringify(product),
   };
 
+  if (product.id !== idProduct) {
+    updateProduct(product, initProduct);
+  } else {
+    includeProducts(initProduct);
+  }
+
+  cleanForm();
+  searchAllProduct();
+};
+
+const includeProducts = (initProduct) => {
   fetch(`${url}/produto`, initProduct)
     .then((response) => {
       if (response.ok) {
@@ -44,42 +58,27 @@ const saveProduct = (id) => {
     .catch((err) => {
       alert(err.message);
     });
-
-  cleanForm();
-  searchAllProduct();
 };
 
-const updateProduct = (id) => {
-  const product = {
-    id: id,
-    nome: "Oi",
-    preco: 10.5,
-  };
-
-  const headers = new Headers();
-  headers.append("content-type", "application/json");
-
-  const initUpdateProduct = {
-    headers: headers,
-    method: "POST",
-    body: JSON.stringify(product),
-  };
-
+const updateProduct = (product, initProduct) => {
   let answer;
-  fetch(`${url}/produto/${product.id}/atualizar`, initUpdateProduct).then(
-    (response) => {
+  fetch(`${url}/produto/${product.id}/atualizar`, initProduct)
+    .then(async (response) => {
       if (response.ok) {
-        answer = response.json();
+        answer = await response.json();
         console.log(answer);
-        alert("Sucesso");
+        alert("Produto cadastrado com sucesso!");
       } else {
-        alert("Erro");
+        throw new Error("Desculpe, algo não saiu como esperado");
       }
-    }
-  );
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
 };
 
 const deleteProduct = (id) => {
+  //Não entendi como prosseguir com essa função
   const product = {
     id: id,
     nome: "Oi",
@@ -107,6 +106,7 @@ const deleteProduct = (id) => {
 };
 
 const serachProductById = (id) => {
+  //Esse tá funcionando teóricamente, ainda não consegui passar pra rodar junto com a tela
   const headers = new Headers();
 
   const product = {
@@ -126,19 +126,20 @@ const serachProductById = (id) => {
 
 const showProductsTable = (products) => {
   let template = "";
-  products.forEach((element) => {
-    template += `<tr>`;
-    template += `<td>${element.id}</td>`;
+  products.forEach((element, index) => {
+    template += `<tr id="tr_${index}">`;
+    template += `<td data-td="td_id">${element.id}</td>`;
     template += `<td>${element.nome}</td>`;
-    template += `<td>${parseFloat(element.preco).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>`;
-    template += `<td><button class="edit code${element.id}"><img src="./assets/img/Icons/pencil.png"></button><button class="delete code${element.id}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
+    template += `<td>${element.preco}</td>`;
+    template += `<td><button class="edit"><img data-index="tr_${index}" src="./assets/img/Icons/pencil.png"/></button><button class="delete" data-index="tr_${index}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
     template += `<tr>`;
     idProduct = element.id + 1;
     tableBodyThirdySection.innerHTML = template;
   });
+  [...document.querySelectorAll(".edit")].forEach((element) => {
+    element.addEventListener("click", editProductForm);
+  });
+  inputCodProduct.value = idProduct;
 };
 
 const searchAllProduct = () => {
@@ -155,6 +156,16 @@ const searchAllProduct = () => {
     });
 };
 
+const editProductForm = (button) => {
+  //Não entendi muito bem o que aconteceu aqui
+  let idElement = button.target.dataset.index;
+  let trProduct = document.querySelector(`#${idElement}`);
+  let tdProducts = trProduct.querySelectorAll("td");
+  inputCodProduct.value = tdProducts[0].innerText;
+  inputProductName.value = tdProducts[1].innerText;
+  inputProductPrice.value = tdProducts[2].innerText; //Retorna um erro de que não pode ser usado parsed, não sei como resolver
+};
+
 searchAllProduct();
 
 btnSaveProduct.addEventListener("click", saveProduct);
@@ -168,4 +179,5 @@ export {
   inputProductName,
   inputProductPrice,
   url,
+  editProductForm,
 };

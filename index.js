@@ -1,6 +1,5 @@
 import createEvents from "./assets/js/events/events.mjs";
-import * as productServices from "./assets/js/productServers.mjs";
-import * as orderServices from "./assets/js/orderServices.mjs";
+import * as productServers from "./assets/js/productServers.mjs";
 
 export let menu = [
   {
@@ -87,6 +86,9 @@ let btnSectionProdutos = document.querySelector("#btnSectionProducts");
 let exibeSecaoProdutos = () => {
   sectionNewOrder.setAttribute("class", "inactive");
   thirdySection.setAttribute("class", "active main thirdSection");
+  [...document.querySelectorAll(".edit")].forEach(element => {
+    element.addEventListener("click", productServers.editProductForm);
+  })
 };
 
 btnSectionProdutos.addEventListener("click", exibeSecaoProdutos);
