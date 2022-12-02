@@ -17,7 +17,7 @@ let cleanForm = () => {
 
 const saveProduct = (id) => {
   const product = {
-    id: idProduct,
+    id: inputCodProduct.value,
     nome: inputProductName.value,
     preco: inputProductPrice.value,
   };
@@ -49,22 +49,7 @@ const saveProduct = (id) => {
   searchAllProduct();
 };
 
-const updateProduct = (id) => {
-  const product = {
-    id: id,
-    nome: "Oi",
-    preco: 10.5,
-  };
-
-  const headers = new Headers();
-  headers.append("content-type", "application/json");
-
-  const initUpdateProduct = {
-    headers: headers,
-    method: "POST",
-    body: JSON.stringify(product),
-  };
-
+const updateProduct = (product) => {
   let answer;
   fetch(`${url}/produto/${product.id}/atualizar`, initUpdateProduct).then(
     (response) => {
