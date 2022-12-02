@@ -39,6 +39,7 @@ const saveProduct = () => {
     updateProduct(product, initProduct);
   } else {
     includeProducts(initProduct);
+    searchAllProduct();
   }
 
   cleanForm();
