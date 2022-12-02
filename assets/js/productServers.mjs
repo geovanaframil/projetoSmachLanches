@@ -19,7 +19,10 @@ const saveProduct = () => {
   const product = {
     id: parseInt(inputCodProduct.value),
     nome: inputProductName.value,
-    preco: inputProductPrice.value,
+    preco: parseFloat(inputProductPrice.value).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }),
   };
 
   const headers = new Headers();
@@ -38,8 +41,6 @@ const saveProduct = () => {
     includeProducts(initProduct);
   }
 
-  console.log(idProduct);
-  console.log(inputCodProduct.value);
   cleanForm();
   searchAllProduct();
 };
@@ -61,17 +62,18 @@ const includeProducts = (initProduct) => {
 
 const updateProduct = (product, initProduct) => {
   let answer;
-  fetch(`${url}/produto/${product.id}/atualizar`, initProduct).then(
-    async (response) => {
+  fetch(`${url}/produto/${product.id}/atualizar`, initProduct)
+    .then(async (response) => {
       if (response.ok) {
         answer = await response.json();
-        console.log(answer);
-        alert("Sucesso");
+        alert("Produto editado com sucesso.");
       } else {
-        alert("Erro");
+        throw new Error("Desculpe, algo não saiu como esperado");
       }
-    }
-  );
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
 };
 
 const deleteProduct = (id) => {
@@ -125,10 +127,7 @@ const showProductsTable = (products) => {
     template += `<tr id="tr_${index}">`;
     template += `<td data-td="td_id">${element.id}</td>`;
     template += `<td>${element.nome}</td>`;
-    template += `<td>${parseFloat(element.preco).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>`;
+    template += `<td>${element.preco}</td>`;
     template += `<td><button class="edit"><img data-index="tr_${index}" src="./assets/img/Icons/pencil.png"/></button><button class="delete" data-index="tr_${index}"><img src="./assets/img/Icons/grayTrash.png"></button></td>`;
     template += `<tr>`;
     idProduct = element.id + 1;
