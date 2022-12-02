@@ -67,7 +67,7 @@ const updateProduct = (product, initProduct) => {
       if (response.ok) {
         answer = await response.json();
         console.log(answer);
-        alert("Produto cadastrado com sucesso!");
+        alert("Produto editado com sucesso!");
       } else {
         throw new Error("Desculpe, algo não saiu como esperado");
       }
