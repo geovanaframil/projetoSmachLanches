@@ -83,7 +83,7 @@ export let btnSave = document.querySelector("#save");
 let secondSection = document.querySelector(".secondSection");
 let btnSectionOrders = document.querySelector("#btnSectionOrders");
 
-let thirdySection = document.querySelector(".thirdSection");
+export let thirdySection = document.querySelector(".thirdSection");
 let btnSectionProdutos = document.querySelector("#btnSectionProducts");
 
 let showOrderSection = () => {
@@ -107,10 +107,8 @@ btnSectionOrders.addEventListener("click", showOrderSection);
 
 export let objectProduct = undefined;
 export let arrayOrder = [];
-export let arrayMultiply = [];
 export let filteredByType = [];
 export let filteredByStatus = [];
-export let sum = 0;
 
 export let arrayForEach = {};
 

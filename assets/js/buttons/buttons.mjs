@@ -32,8 +32,8 @@ const cleanForm = () => {
 
 export let newOrder = () => {
   let arrayItemsOrder = [];
-  let sum = 0;
   sectionNewOrder.setAttribute("class", "inactive");
+  indexJs.thirdySection.setAttribute("class", "inactive");
   sectionRegisterProduct.setAttribute("class", "active main");
 };
 
@@ -102,12 +102,10 @@ const showOrders = () => {
 };
 
 export let cancelOrder = () => {
-  tableBody.innerHTML = "";
-  arrayItemsOrder = [];
-  arrayMultiply = [];
-  tableBody.setAttribute("class", "inactive");
-  trDefaultImage.setAttribute("class", "imageBasket active");
-  tableFooter.setAttribute("class", "inactive");
+  indexJs.tableBody.innerHTML = "";
+  indexJs.tableBody.setAttribute("class", "inactive");
+  indexJs.trDefaultImage.setAttribute("class", "imageBasket active");
+  indexJs.tableFooter.setAttribute("class", "inactive");
 };
 
 export let saveOrder = () => {
