@@ -27,12 +27,38 @@ export async function valueInputSearch() {
   }
 }
 
+class OrderItems {
+  idProduct;
+  productName;
+  qty;
+  price;
+
+  constructor(idProduct, productName, qty, price) {
+    this.idProduct = parseInt(idProduct);
+    this.productName = productName;
+    this.qty = parseInt(qty);
+    this.price = parseInt(price);
+  }
+
+  get total() {
+    return this.qty * this.price;
+  }
+}
+
 export let addProduct = () => {
   const idProduct = indexJs.inputSearchProduct.value;
   const productName = indexJs.inputProduct.value;
   const productPrice = indexJs.inputPrice.value.replace("R$", "");
   const valueInputQty = indexJs.inputQty.value;
-  console.log(idProduct, productName, productPrice, valueInputQty);
+
+  const orderItems = new OrderItems(
+    idProduct,
+    productName,
+    valueInputQty,
+    productPrice
+  );
+
+  console.log(orderItems);
   // let multiply = valueInputQty * objectProduct.price;
   // arrayMultiply.push(multiply);
   // sum = total();
