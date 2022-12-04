@@ -100,25 +100,29 @@ const deleteProduct = (id) => {
 };
 
 //Esse é teste ainda
-const showOrdersForm = (product) => {
+async function showOrdersForm(product) {
   product.forEach((element) => {
     inputProductNameSecondSection.value = element.nome;
     inputProductPriceSecondSection.value = element.preco;
   });
-};
+}
 
 //Esse tbm é teste
-const serachProductById = (id) => {
+async function serachProductById(id) {
   const headers = new Headers();
 
-  fetch(`${url}/produto/${id}`, { headers: headers, mode: "cors" })
-    .then((response) => {
-      return response.json();
-    })
-    .then((jsonData) => {
-      showOrdersForm(jsonData);
-    });
-};
+  let response = await fetch(`${url}/produto/${id}`, {
+    headers: headers,
+    mode: "cors",
+  });
+
+  if (response.ok) {
+    let productsData = await response.json();
+    return productsData;
+  } else {
+    await response.text();
+  }
+}
 
 //Exibe tabela renderizada no html da terceira seção (seção produto)
 const showProductsTable = (products) => {
@@ -192,9 +196,11 @@ export {
   saveProduct,
   deleteProduct,
   serachProductById,
+  inputCodProduct,
   inputProductName,
   inputProductPrice,
   url,
   editProductForm,
   btnDeleteProduct,
+  showOrdersForm,
 };

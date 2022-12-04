@@ -107,11 +107,8 @@ btnSectionOrders.addEventListener("click", showOrderSection);
 
 export let objectProduct = undefined;
 export let arrayMultiply = [];
-export let arrayItemsOrder = [];
-export let arrayOrders = [];
 export let filteredByType = [];
 export let filteredByStatus = [];
-export let numberOrder = 10000;
 export let sum = 0;
 
 export let arrayForEach = {};

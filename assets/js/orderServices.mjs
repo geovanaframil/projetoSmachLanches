@@ -1,13 +1,12 @@
 const url = "http://localhost:3000";
 
-const createNewOrder = () => {
+async function addProductsToOrder(products, type) {
   const order = {
-    id: 100004,
-    tipo: "delivery",
+    id: Math.floor(Math.random() * 999),
+    tipo: type,
     produtos: [
       {
-        idProduto: 18,
-        quantidade: 7,
+        products,
       },
     ],
   };
@@ -22,15 +21,15 @@ const createNewOrder = () => {
     body: JSON.stringify(order),
   };
 
-  fetch(`${url}/pedido`, initOrder).then((response) => {
-    if (response.ok) {
-      console.log(response);
-      alert("Sucesso");
-    } else {
-      alert("Erro");
-    }
-  });
-};
+  let response = await fetch(`${url}/pedido`, initOrder);
+
+  if (response.ok) {
+    let dataOrder = await response.json();
+    return dataOrder;
+  } else {
+    await response.text();
+  }
+}
 
 const deleteOrder = (id) => {
   const order = {
@@ -82,4 +81,4 @@ const searchAllOrders = () => {
     });
 };
 
-export { createNewOrder, deleteOrder, searchAllOrders };
+export { addProductsToOrder, deleteOrder, searchAllOrders };

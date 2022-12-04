@@ -12,6 +12,5 @@ function createEvents(){
         document.querySelector("#selectStatus").addEventListener("change", filterOrdersByStatus);
         document.querySelector("#checkboxHeader").addEventListener("click", selectAllCheckbox);
         document.querySelector(".delete").addEventListener("click", deleteOrder);
-      
 }
 export default createEvents
