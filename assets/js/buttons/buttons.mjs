@@ -1,5 +1,31 @@
 import * as indexJs from "../../../index.js";
 import * as productServer from "../productServers.mjs";
+import * as orderServices from "../orderServices.mjs";
+
+class OrderItems {
+  idProduct;
+  productName;
+  qty;
+  price;
+
+  constructor(idProduct, productName, qty, price) {
+    this.idProduct = parseInt(idProduct);
+    this.productName = productName;
+    this.qty = parseInt(qty);
+    this.price = parseInt(price);
+  }
+
+  get total() {
+    return this.qty * this.price;
+  }
+}
+
+const cleanForm = () => {
+  indexJs.inputSearchProduct.value = "";
+  indexJs.inputProduct.value = "";
+  indexJs.inputPrice.value = "";
+  indexJs.inputQty.value = "";
+};
 
 export let newOrder = () => {
   let arrayItemsOrder = [];
@@ -27,24 +53,6 @@ export async function valueInputSearch() {
   }
 }
 
-class OrderItems {
-  idProduct;
-  productName;
-  qty;
-  price;
-
-  constructor(idProduct, productName, qty, price) {
-    this.idProduct = parseInt(idProduct);
-    this.productName = productName;
-    this.qty = parseInt(qty);
-    this.price = parseInt(price);
-  }
-
-  get total() {
-    return this.qty * this.price;
-  }
-}
-
 export let addProduct = () => {
   const idProduct = indexJs.inputSearchProduct.value;
   const productName = indexJs.inputProduct.value;
@@ -58,40 +66,30 @@ export let addProduct = () => {
     productPrice
   );
 
-  console.log(orderItems);
-  // let multiply = valueInputQty * objectProduct.price;
-  // arrayMultiply.push(multiply);
-  // sum = total();
-  // cleanForm();
-  // arrayItemsOrder.push({
-  //   code: objectProduct.code,
-  //   product: objectProduct.product,
-  //   qty: valueInputQty,
-  //   price: multiply,
-  // });
-  // if (valueInputQty == "") {
-  //   alert("Digite uma quantidade");
-  // } else {
-  //   trDefaultImage.setAttribute("class", "inactive");
-  //   tableBody.innerHTML += `<tr>
-  //     <td>${objectProduct.code}</td>
-  //     <td>${objectProduct.product}</td>
-  //     <td>${valueInputQty}</td>
-  //     <td>${multiply.toLocaleString("pt-BR", {
-  //       style: "currency",
-  //       currency: "BRL",
-  //     })}</td>
-  //     </tr>`;
-  //   tableFooter.innerHTML = `TOTAL DO PEDIDO: <span>${sum.toLocaleString(
-  //     "pt-BR",
-  //     {
-  //       style: "currency",
-  //       currency: "BRL",
-  //     }
-  //   )}</span>`;
-  //   tableBody.setAttribute("class", "tableBody");
-  //   tableFooter.setAttribute("class", "tableFooter active");
-  // }
+  cleanForm();
+
+  if (valueInputQty == "") {
+    alert("Digite uma quantidade");
+  } else {
+    indexJs.arrayOrder.push(orderItems);
+    showOrders();
+  }
+};
+
+const showOrders = () => {
+  let template = "";
+  indexJs.arrayOrder.forEach((element) => {
+    template += "<tr>";
+    template += `<td>${element.idProduct}</td>`;
+    template += `<td>${element.productName}</td>`;
+    template += `<td>${element.qty}</td>`;
+    template += `<td>${element.total}</td>`;
+  });
+
+  indexJs.tableBody.innerHTML = template;
+  indexJs.trDefaultImage.setAttribute("class", "inactive");
+  indexJs.tableBody.setAttribute("class", "tableBody");
+  indexJs.tableFooter.setAttribute("class", "tableFooter active");
 };
 
 export let cancelOrder = () => {

@@ -106,6 +106,7 @@ btnSectionProdutos.addEventListener("click", exibeSecaoProdutos);
 btnSectionOrders.addEventListener("click", showOrderSection);
 
 export let objectProduct = undefined;
+export let arrayOrder = [];
 export let arrayMultiply = [];
 export let filteredByType = [];
 export let filteredByStatus = [];
