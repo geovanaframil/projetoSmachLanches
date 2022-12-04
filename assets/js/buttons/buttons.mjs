@@ -1,4 +1,5 @@
 import * as indexJs from "../../../index.js";
+import * as orderService from "../orderServices.mjs";
 import * as productServer from "../productServers.mjs";
 
 class OrderItems {
@@ -31,10 +32,9 @@ const cleanForm = () => {
 };
 
 export let newOrder = () => {
-  let arrayItemsOrder = [];
-  sectionNewOrder.setAttribute("class", "inactive");
+  indexJs.sectionNewOrder.setAttribute("class", "inactive");
   indexJs.thirdySection.setAttribute("class", "inactive");
-  sectionRegisterProduct.setAttribute("class", "active main");
+  indexJs.sectionRegisterProduct.setAttribute("class", "active main");
 };
 
 export async function valueInputSearch() {
@@ -109,20 +109,19 @@ export let cancelOrder = () => {
 };
 
 export let saveOrder = () => {
-  numberOrder += 1;
-  arrayOrders.push({
-    numberOrder: numberOrder,
-    items: arrayItemsOrder,
-    type: consumptionType(),
-    total: total(),
-    status: "Recebido",
+  indexJs.sectionRegisterProduct.setAttribute("class", "inactive");
+  indexJs.sectionNewOrder.setAttribute("class", "active main");
+
+  let typeOrder = document.querySelector('input[name="options"]:checked').value;
+
+  const arrayItemsOrder = indexJs.arrayOrder.map((product) => {
+    return {
+      idProduct: product.idProduct,
+      qty: product.qty,
+    };
   });
 
-  sectionRegisterProduct.setAttribute("class", "inactive");
-  sectionNewOrder.setAttribute("class", "active main");
-
-  showOrders();
-  cancelOrder();
+  console.log(typeOrder, arrayItemsOrder);
 };
 
 export let printBtn = () => {
