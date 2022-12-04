@@ -16,7 +16,11 @@ class OrderItems {
   }
 
   get total() {
-    return this.qty * this.price;
+    let total = this.qty * this.price;
+    return total.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
   }
 }
 
