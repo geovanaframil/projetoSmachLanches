@@ -123,7 +123,10 @@ export let consumptionType = () => {
 };
 
 export let total = () => {
-  return arrayMultiply.reduce((inicial, atual) => inicial + atual, 0);
+  const total = arrayOrder.reduce((current, product) => {
+    return current + product.qty * product.price;
+  }, 0);
+  return total;
 };
 
 export let cleanForm = () => {

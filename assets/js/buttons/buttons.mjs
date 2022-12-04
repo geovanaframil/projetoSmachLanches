@@ -1,6 +1,5 @@
 import * as indexJs from "../../../index.js";
 import * as productServer from "../productServers.mjs";
-import * as orderServices from "../orderServices.mjs";
 
 class OrderItems {
   idProduct;
@@ -93,6 +92,12 @@ const showOrders = () => {
   indexJs.tableBody.innerHTML = template;
   indexJs.trDefaultImage.setAttribute("class", "inactive");
   indexJs.tableBody.setAttribute("class", "tableBody");
+  indexJs.tableFooter.innerHTML = `Total do pedido: <span>${indexJs
+    .total()
+    .toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</span>`;
   indexJs.tableFooter.setAttribute("class", "tableFooter active");
 };
 
