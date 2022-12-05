@@ -108,7 +108,7 @@ export let cancelOrder = () => {
   indexJs.tableFooter.setAttribute("class", "inactive");
 };
 
-export let saveOrder = () => {
+export async function saveOrder() {
   indexJs.sectionRegisterProduct.setAttribute("class", "inactive");
   indexJs.sectionNewOrder.setAttribute("class", "active main");
 
@@ -116,13 +116,39 @@ export let saveOrder = () => {
 
   const arrayItemsOrder = indexJs.arrayOrder.map((product) => {
     return {
-      idProduct: product.idProduct,
-      qty: product.qty,
+      idProduto: product.idProduct,
+      quantidade: product.qty,
     };
   });
 
-  console.log(typeOrder, arrayItemsOrder);
-};
+  try {
+    const order = await orderService.addProductsToOrder(
+      arrayItemsOrder,
+      typeOrder
+    );
+
+    showOrderBtnSave(order);
+
+    alert("O pedido foi recebido!");
+  } catch (err) {
+    alert(`${err}`);
+  }
+}
+
+async function showOrderBtnSave(order) {
+  let template = "";
+  console.log(order);
+  template += `<tr>`;
+  template += `<td>${order.id}</td>`;
+  template += `<td>${order.produtos
+    .map((product) => `${product.quantidade} - ${product.nome}</br>`)
+    .join("")}</td>`;
+  template += `<td>${order.tipo}</td>`;
+  template += `<td>${order.total}</td>`;
+  template += `<td>${order.status}</td>`;
+
+  indexJs.bodyTable.innerHTML = template;
+}
 
 export let printBtn = () => {
   window.print();

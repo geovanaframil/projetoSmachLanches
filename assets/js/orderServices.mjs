@@ -1,16 +1,6 @@
 const url = "http://localhost:3000";
 
 async function addProductsToOrder(products, type) {
-  const order = {
-    id: Math.floor(Math.random() * 999),
-    tipo: type,
-    produtos: [
-      {
-        products,
-      },
-    ],
-  };
-
   const headers = new Headers();
 
   headers.append("content-type", "application/json");
@@ -18,7 +8,11 @@ async function addProductsToOrder(products, type) {
   const initOrder = {
     headers: headers,
     method: "POST",
-    body: JSON.stringify(order),
+    body: JSON.stringify({
+      id: Math.floor(Math.random() * 999),
+      tipo: type,
+      produtos: products,
+    }),
   };
 
   let response = await fetch(`${url}/pedido`, initOrder);
