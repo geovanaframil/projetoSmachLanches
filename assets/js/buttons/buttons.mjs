@@ -127,29 +127,12 @@ export async function saveOrder() {
       typeOrder
     );
 
-    showOrderBtnSave(order);
+    orderService.searchAllOrders();
 
     alert("O pedido foi recebido!");
   } catch (err) {
     alert(`${err}`);
   }
-}
-
-async function showOrderBtnSave(order) {
-  let template = "";
-  template += `<tr>`;
-  template += `<td>${order.id}</td>`;
-  template += `<td>${order.produtos
-    .map((product) => `${product.quantidade} - ${product.nome}</br>`)
-    .join("")}</td>`;
-  template += `<td>${order.tipo}</td>`;
-  template += `<td>${indexJs.total().toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>`;
-  template += `<td><button class="btnStatus">${order.status}</button></td>`;
-
-  indexJs.bodyTable.innerHTML = template;
 }
 
 export let printBtn = () => {

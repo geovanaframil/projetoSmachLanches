@@ -1,4 +1,5 @@
-import * as buttons from "../js/buttons/buttons.mjs";
+import * as indexJs from "../../index.js";
+const tableAllOrders = document.querySelector("#tableBody");
 
 const url = "http://localhost:3000";
 
@@ -63,6 +64,25 @@ const deleteOrder = (id) => {
   );
 };
 
+const showOrdersTable = (orders) => {
+  let template = "";
+
+  orders.forEach((order) => {
+    template += `<tr>`;
+    template += `<td>${order.id}</td>`;
+    template += `<td>${order.produtos
+      .map((product) => `${product.quantidade} - ${product.nome}</br>`)
+      .join("")}</td>`;
+    template += `<td>${order.tipo}</td>`;
+    template += `<td>${indexJs.total().toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</td>`;
+    template += `<td><button class="btnStatus">${order.status}</button></td>`;
+    tableAllOrders.innerHTML = template;
+  });
+};
+
 async function searchAllOrders() {
   const headers = new Headers();
 
@@ -72,6 +92,9 @@ async function searchAllOrders() {
   });
   const orders = await response.json();
 
+  showOrdersTable(orders);
+
+  return orders;
 }
 
-export { addProductsToOrder, deleteOrder, searchAllOrders };
+export { addProductsToOrder, deleteOrder, searchAllOrders, showOrdersTable };
