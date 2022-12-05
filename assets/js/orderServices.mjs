@@ -1,3 +1,5 @@
+import * as buttons from "../js/buttons/buttons.mjs";
+
 const url = "http://localhost:3000";
 
 async function addProductsToOrder(products, type) {
@@ -61,18 +63,15 @@ const deleteOrder = (id) => {
   );
 };
 
-const searchAllOrders = () => {
+async function searchAllOrders() {
   const headers = new Headers();
 
-  fetch(`${url}/pedido/todos`, { headers: headers, mode: "cors" })
-    .then((response) => {
-      return response.json();
-    })
-    .then((jsonData) => {
-      jsonData.forEach((element) => {
-        console.log(element.id, element.tipo, element.produtos);
-      });
-    });
-};
+  const response = await fetch(`${url}/pedido/todos`, {
+    headers: headers,
+    mode: "cors",
+  });
+  const orders = await response.json();
+
+}
 
 export { addProductsToOrder, deleteOrder, searchAllOrders };

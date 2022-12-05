@@ -144,10 +144,10 @@ async function showOrderBtnSave(order) {
     .join("")}</td>`;
   template += `<td>${order.tipo}</td>`;
   template += `<td>${indexJs.total().toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  })}</td>`;
-  template += `<td>${order.status}</td>`;
+      style: "currency",
+      currency: "BRL",
+    })}</td>`;
+  template += `<td><button class="btnStatus">${order.status}</button></td>`;
 
   indexJs.bodyTable.innerHTML = template;
 }
