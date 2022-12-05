@@ -23,11 +23,9 @@ const saveProduct = () => {
   const product = {
     id: parseInt(inputCodProduct.value),
     nome: inputProductName.value,
-    preco: parseFloat(inputProductPrice.value).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }),
+    preco: parseFloat(inputProductPrice.value),
   };
+
 
   const headers = new Headers();
 

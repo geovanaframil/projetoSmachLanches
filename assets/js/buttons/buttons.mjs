@@ -24,6 +24,21 @@ class OrderItems {
   }
 }
 
+const cleanTableOrderProduct = () => {
+  indexJs.tableBody.innerHTML = "";
+  indexJs.tableFooter.setAttribute("class", "inactive");
+  indexJs.tableBody.setAttribute("class", "inactive");
+  indexJs.trDefaultImage.setAttribute("class", "imageBasket active");
+  indexJs.tableFooter.setAttribute("class", "inactive");
+};
+
+const cleanArrayOrder = () => {
+  console.log(indexJs.arrayOrder);
+  for (let i = 0; i < indexJs.arrayOrder.length; i++) {
+    indexJs.arrayOrder.pop();
+  }
+};
+
 const cleanForm = () => {
   indexJs.inputSearchProduct.value = "";
   indexJs.inputProduct.value = "";
@@ -32,6 +47,8 @@ const cleanForm = () => {
 };
 
 export let newOrder = () => {
+  cleanTableOrderProduct();
+  cleanTableOrderProduct()
   indexJs.sectionNewOrder.setAttribute("class", "inactive");
   indexJs.thirdySection.setAttribute("class", "inactive");
   indexJs.sectionRegisterProduct.setAttribute("class", "active main");
@@ -102,10 +119,8 @@ const showOrders = () => {
 };
 
 export let cancelOrder = () => {
-  indexJs.tableBody.innerHTML = "";
-  indexJs.tableBody.setAttribute("class", "inactive");
-  indexJs.trDefaultImage.setAttribute("class", "imageBasket active");
-  indexJs.tableFooter.setAttribute("class", "inactive");
+  cleanArrayOrder();
+  cleanTableOrderProduct();
 };
 
 export async function saveOrder() {
@@ -133,6 +148,8 @@ export async function saveOrder() {
   } catch (err) {
     alert(`${err}`);
   }
+
+  cleanArrayOrder();
 }
 
 export let printBtn = () => {

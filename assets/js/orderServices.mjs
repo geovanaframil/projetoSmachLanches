@@ -1,4 +1,3 @@
-import * as indexJs from "../../index.js";
 const tableAllOrders = document.querySelector("#tableBody");
 
 const url = "http://localhost:3000";
@@ -74,10 +73,7 @@ const showOrdersTable = (orders) => {
       .map((product) => `${product.quantidade} - ${product.nome}</br>`)
       .join("")}</td>`;
     template += `<td>${order.tipo}</td>`;
-    template += `<td>${indexJs.total().toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>`;
+    template += `<td>${order.total}</td>`;
     template += `<td><button class="btnStatus">${order.status}</button></td>`;
     tableAllOrders.innerHTML = template;
   });
@@ -97,4 +93,4 @@ async function searchAllOrders() {
   return orders;
 }
 
-export { addProductsToOrder, deleteOrder, searchAllOrders, showOrdersTable };
+export { tableAllOrders, addProductsToOrder, deleteOrder, searchAllOrders, showOrdersTable };
