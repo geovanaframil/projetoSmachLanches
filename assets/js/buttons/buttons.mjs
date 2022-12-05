@@ -137,14 +137,16 @@ export async function saveOrder() {
 
 async function showOrderBtnSave(order) {
   let template = "";
-  console.log(order);
   template += `<tr>`;
   template += `<td>${order.id}</td>`;
   template += `<td>${order.produtos
     .map((product) => `${product.quantidade} - ${product.nome}</br>`)
     .join("")}</td>`;
   template += `<td>${order.tipo}</td>`;
-  template += `<td>${order.total}</td>`;
+  template += `<td>${indexJs.total().toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  })}</td>`;
   template += `<td>${order.status}</td>`;
 
   indexJs.bodyTable.innerHTML = template;
