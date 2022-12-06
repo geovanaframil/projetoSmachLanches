@@ -32,7 +32,6 @@ const cleanForm = () => {
 };
 
 const cleanArrayOrder = () => {
-  console.log(indexJs.arrayOrder);
   for (let i = 0; i < indexJs.arrayOrder.length; i++) {
     indexJs.arrayOrder.pop();
   }
@@ -48,7 +47,7 @@ const cleanTableOrderProduct = () => {
 
 export let newOrder = () => {
   cleanTableOrderProduct();
-  cleanTableOrderProduct();
+  cleanArrayOrder();
   indexJs.sectionNewOrder.setAttribute("class", "inactive");
   indexJs.thirdySection.setAttribute("class", "inactive");
   indexJs.sectionRegisterProduct.setAttribute("class", "active main");

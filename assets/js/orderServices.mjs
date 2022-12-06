@@ -1,3 +1,5 @@
+import * as indexJs from "../../index.js"
+
 const tableAllOrders = document.querySelector("#tableBody");
 
 const url = "http://localhost:3000";
@@ -66,7 +68,7 @@ const deleteOrder = (id) => {
 const showOrdersTable = (orders) => {
   let template = "";
 
-  orders.forEach((order) => {
+  orders.forEach((order, index) => {
     template += `<tr>`;
     template += `<td>${order.id}</td>`;
     template += `<td>${order.produtos
@@ -77,8 +79,11 @@ const showOrdersTable = (orders) => {
       style: "currency",
       currency: "BRL",
     })}</td>`;
-    template += `<td><button class="btnStatus">${order.status}</button></td>`;
+    template += `<td><button class="btnStatus" data-index="btnStatus_${index}">${order.status}</button></td>`;
     tableAllOrders.innerHTML = template;
+  });
+  [...document.querySelectorAll(".btnStatus")].forEach((element) => {
+    element.addEventListener("click", indexJs.changeStatusButton);
   });
 };
 

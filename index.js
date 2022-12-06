@@ -69,42 +69,19 @@ export let total = () => {
   return total;
 };
 
-export let showOrders = () => {
-  trImage.setAttribute("hidden", "true");
-  let template = "";
-  arrayOrders.forEach((element) => {
-    template += `<tr id='numberOrder_'${element.numberOrder}>`;
-    template += `<td><input type="checkbox" onclick="selectCheckbox()"> ${element.numberOrder}</td>`;
-    template += "<td>";
-    element.items.forEach((item) => {
-      template += `${item.qty} - ${item.product} </br>`;
-    });
-    template += "</td>";
-    template += `<td>${element.type}</td>`;
-    template += `<td>${element.total.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>`;
-    template += `<td><button class='btnStatus' onclick="changeStatusButton(${element.numberOrder})">${element.status}</button></td>`;
-    template += "</tr>";
-  });
-  bodyTable.innerHTML = template;
-
-  updateOrderTable();
-};
-
-export let changeStatusButton = (orderNumber) => {
-  arrayOrders.map((order) => {
-    if (order.numberOrder == orderNumber) {
-      if (order.status == "Recebido") {
-        order.status = "Pronto";
-      } else if (order.status == "Pronto") {
-        order.status = "Entregue";
-      }
-    }
-    return order;
-  });
-  updateOrderTable();
+export let changeStatusButton = () => {
+  console.log('teste')
+  // arrayOrder.map((order) => {
+  //   if (order.numberOrder == orderNumber) {
+  //     if (order.status == "Recebido") {
+  //       order.status = "Pronto";
+  //     } else if (order.status == "Pronto") {
+  //       order.status = "Entregue";
+  //     }
+  //   }
+  //   return order;
+  // });
+  // orderServices.searchAllOrders();
 };
 
 export let updateOrderTable = (array = arrayOrders) => {
