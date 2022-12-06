@@ -1,4 +1,4 @@
-import * as indexJs from "../../index.js"
+import * as indexJs from "../../index.js";
 
 const tableAllOrders = document.querySelector("#tableBody");
 
@@ -79,13 +79,40 @@ const showOrdersTable = (orders) => {
       style: "currency",
       currency: "BRL",
     })}</td>`;
-    template += `<td><button class="btnStatus" data-index="btnStatus_${index}">${order.status}</button></td>`;
+    template += `<td><button class="btnStatus" data-index="btnStatus_${index}" idOrder="${order.id}" status="${order.status}">${order.status}</button></td>`;
     tableAllOrders.innerHTML = template;
   });
   [...document.querySelectorAll(".btnStatus")].forEach((element) => {
-    element.addEventListener("click", indexJs.changeStatusButton);
+    let idOrderAttribute = element.getAttribute("idOrder")
+    let statusOrderAttribute = element.getAttribute("status")
+    element.addEventListener("click", () => {
+      changeStatusOrder(idOrderAttribute, statusOrderAttribute);
+    });
   });
 };
+
+async function changeStatusOrder(idOrder, status) {
+  const headers = new Headers();
+
+  headers.append("content-type", "application/json");
+
+  const initOrder = {
+    headers: headers,
+    method: "POST",
+    body: JSON.stringify({
+      status: indexJs.changeStatus(status),
+    }),
+  };
+
+  let response = await fetch(
+    `${url}/pedido/${idOrder}/mudar-status`,
+    initOrder
+  );
+
+  if (response.ok) {
+    searchAllOrders();
+  }
+}
 
 async function searchAllOrders() {
   const headers = new Headers();

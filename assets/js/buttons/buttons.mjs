@@ -46,8 +46,8 @@ const cleanTableOrderProduct = () => {
 };
 
 export let newOrder = () => {
-  cleanTableOrderProduct();
   cleanArrayOrder();
+  cleanTableOrderProduct();
   indexJs.sectionNewOrder.setAttribute("class", "inactive");
   indexJs.thirdySection.setAttribute("class", "inactive");
   indexJs.sectionRegisterProduct.setAttribute("class", "active main");

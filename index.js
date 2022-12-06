@@ -69,21 +69,6 @@ export let total = () => {
   return total;
 };
 
-export let changeStatusButton = () => {
-  console.log('teste')
-  // arrayOrder.map((order) => {
-  //   if (order.numberOrder == orderNumber) {
-  //     if (order.status == "Recebido") {
-  //       order.status = "Pronto";
-  //     } else if (order.status == "Pronto") {
-  //       order.status = "Entregue";
-  //     }
-  //   }
-  //   return order;
-  // });
-  // orderServices.searchAllOrders();
-};
-
 export let updateOrderTable = (array = arrayOrders) => {
   let trTds = "";
   array.forEach((element) => {
@@ -109,17 +94,17 @@ export let updateOrderTable = (array = arrayOrders) => {
   bodyTable.innerHTML = trTds;
 };
 
-export let validStatus = (status) => {
+export let changeStatus = (status) => {
   let statusClass = "";
   switch (status) {
     case "Recebido":
-      statusClass = "received";
+      statusClass = "Pronto";
       break;
     case "Pronto":
-      statusClass = "ready";
+      statusClass = "Entregue";
       break;
-    case "Entregue":
-      statusClass = "delivered";
+    default:
+      statusClass = "Entregue";
       break;
   }
   return statusClass;

@@ -227,13 +227,13 @@ table {
   font-weight: 600;
 }
 
-.ready {
+[status="Pronto"] {
   border: 1px solid var(--color-button-border-secundary);
   background-color: var(--color-button-fourth);
   color: var(--color-button-border-secundary);
 }
 
-.delivered {
+[status="Entregue"] {
   border: 1px solid var(--color-button-border-terciary);
   background-color: #85ffa0;
   color: var(--color-button-border-terciary);
@@ -412,7 +412,8 @@ input[type="number"] {
   padding-left: 16px;
 }
 
-.add, .sectionSaveProduct {
+.add,
+.sectionSaveProduct {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 32px;
@@ -534,7 +535,8 @@ footer {
   width: 11rem;
 }
 
-.edit, .delete {
+.edit,
+.delete {
   border: none;
   background-color: transparent;
 }
