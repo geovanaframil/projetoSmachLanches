@@ -73,7 +73,10 @@ const showOrdersTable = (orders) => {
       .map((product) => `${product.quantidade} - ${product.nome}</br>`)
       .join("")}</td>`;
     template += `<td>${order.tipo}</td>`;
-    template += `<td>${order.total}</td>`;
+    template += `<td>${order.total.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}</td>`;
     template += `<td><button class="btnStatus">${order.status}</button></td>`;
     tableAllOrders.innerHTML = template;
   });
@@ -93,4 +96,10 @@ async function searchAllOrders() {
   return orders;
 }
 
-export { tableAllOrders, addProductsToOrder, deleteOrder, searchAllOrders, showOrdersTable };
+export {
+  tableAllOrders,
+  addProductsToOrder,
+  deleteOrder,
+  searchAllOrders,
+  showOrdersTable,
+};

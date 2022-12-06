@@ -24,12 +24,11 @@ class OrderItems {
   }
 }
 
-const cleanTableOrderProduct = () => {
-  indexJs.tableBody.innerHTML = "";
-  indexJs.tableFooter.setAttribute("class", "inactive");
-  indexJs.tableBody.setAttribute("class", "inactive");
-  indexJs.trDefaultImage.setAttribute("class", "imageBasket active");
-  indexJs.tableFooter.setAttribute("class", "inactive");
+const cleanForm = () => {
+  indexJs.inputSearchProduct.value = "";
+  indexJs.inputProduct.value = "";
+  indexJs.inputPrice.value = "";
+  indexJs.inputQty.value = "";
 };
 
 const cleanArrayOrder = () => {
@@ -39,16 +38,17 @@ const cleanArrayOrder = () => {
   }
 };
 
-const cleanForm = () => {
-  indexJs.inputSearchProduct.value = "";
-  indexJs.inputProduct.value = "";
-  indexJs.inputPrice.value = "";
-  indexJs.inputQty.value = "";
+const cleanTableOrderProduct = () => {
+  indexJs.tableBody.innerHTML = "";
+  indexJs.tableFooter.setAttribute("class", "inactive");
+  indexJs.tableBody.setAttribute("class", "inactive");
+  indexJs.trDefaultImage.setAttribute("class", "imageBasket active");
+  indexJs.tableFooter.setAttribute("class", "inactive");
 };
 
 export let newOrder = () => {
   cleanTableOrderProduct();
-  cleanTableOrderProduct()
+  cleanTableOrderProduct();
   indexJs.sectionNewOrder.setAttribute("class", "inactive");
   indexJs.thirdySection.setAttribute("class", "inactive");
   indexJs.sectionRegisterProduct.setAttribute("class", "active main");
