@@ -52,7 +52,7 @@ const showOrdersTable = (orders) => {
 
   orders.forEach((order, index) => {
     template += `<tr>`;
-    template += `<td><input type="checkbox" id="${order.id}" value="${order.id}"/>${order.id}</td>`;
+    template += `<td><input type="checkbox" id="${order.id}" value="${order.id}" onclick="selectCheckbox()"/>${order.id}</td>`;
     template += `<td>${order.produtos
       .map((product) => `${product.quantidade} - ${product.nome}</br>`)
       .join("")}</td>`;

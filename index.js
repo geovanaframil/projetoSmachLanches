@@ -2,6 +2,7 @@ import createEvents from "./assets/js/events/events.mjs";
 import * as productServers from "./assets/js/productServers.mjs";
 import * as orderServices from "./assets/js/orderServices.mjs";
 import { showCurrentDate } from './assets/js/date.mjs';
+import { selectAllCheckbox } from "./assets/js/buttons/buttons.mjs";
 
 export let sectionNewOrder = document.querySelector(".active");
 export let sectionRegisterProduct = document.querySelector(".secondSection");
@@ -124,3 +125,13 @@ showCurrentDate()
 createEvents();
 
 window.onload = orderServices.searchAllOrders();
+window.selectCheckbox = () => {
+  let checkboxes = document.querySelectorAll(
+    'input[type="checkbox"]'
+  );
+
+  if (checkboxes.length > 0) {
+    userInteractionSection.setAttribute("class", "inactive");
+    sectionBtnDelete.setAttribute("class", "active delete");
+  }
+}
