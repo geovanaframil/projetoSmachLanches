@@ -47,9 +47,6 @@ let exibeSecaoProdutos = () => {
   [...document.querySelectorAll(".edit")].forEach((element) => {
     element.addEventListener("click", productServers.editProductForm);
   });
-  // [...document.querySelectorAll("#btnDelete")].forEach((element) => {
-  //   element.addEventListener("click", productServers.btnDeleteProduct);
-  // });
 };
 
 btnSectionProdutos.addEventListener("click", exibeSecaoProdutos);
@@ -65,31 +62,6 @@ export let total = () => {
     return current + product.qty * product.price;
   }, 0);
   return total;
-};
-
-export let updateOrderTable = (array = arrayOrders) => {
-  let trTds = "";
-  array.forEach((element) => {
-    trTds += `<tr id='numberOrder_'${element.numberOrder}>`;
-    trTds += `<td><input type="checkbox" id='checkbox-${element.numberOrder}' class="selectCheckbox"> ${element.numberOrder}</td>`;
-    trTds += "<td>";
-    element.items.forEach((item) => {
-      trTds += `${item.qty} - ${item.product} </br>`;
-    });
-    trTds += "</td>";
-    trTds += `<td>${element.type}</td>`;
-    trTds += `<td>${element.total.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>`;
-    trTds += `<td><button class='btnStatus ${validStatus(
-      element.status
-    )}' class="changeStatusButton">${element.status}</button></td>`;
-    trTds += "</tr>";
-    return (arrayForEach = element);
-  });
-
-  bodyTable.innerHTML = trTds;
 };
 
 export let changeStatus = (status) => {
