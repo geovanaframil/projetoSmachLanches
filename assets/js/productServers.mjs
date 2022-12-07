@@ -59,7 +59,7 @@ const includeProducts = (initProduct) => {
       }
     })
     .catch((err) => {
-      alert(err.message);
+      console.log(err)
     });
 };
 
@@ -100,7 +100,7 @@ const deleteProduct = (id) => {
 async function showOrdersForm(product) {
   product.forEach((element) => {
     inputProductNameSecondSection.value = element.nome;
-    inputProductPriceSecondSection.value = element.preco;
+    inputProductPriceSecondSection.value = `R$${element.preco},00`;
   });
 }
 
@@ -128,7 +128,7 @@ const showProductsTable = (products) => {
     template += `<tr id="tr_${index}">`;
     template += `<td data-td="td_id">${element.id}</td>`;
     template += `<td>${element.nome}</td>`;
-    template += `<td>${element.preco}</td>`;
+    template += `<td>R$ ${element.preco},00</td>`;
     template += `<td><button class="edit"><img data-index="tr_${index}" productId="${index}" src="./assets/img/Icons/pencil.png"/></button><button class="btn-delete"><img data-index="tr_${index}" src="./assets/img/Icons/grayTrash.png"></button></td>`;
     template += `<tr>`;
     idProduct = element.id + 1;

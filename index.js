@@ -1,6 +1,7 @@
 import createEvents from "./assets/js/events/events.mjs";
 import * as productServers from "./assets/js/productServers.mjs";
 import * as orderServices from "./assets/js/orderServices.mjs";
+import { showCurrentDate } from './assets/js/date.mjs';
 
 export let sectionNewOrder = document.querySelector(".active");
 export let sectionRegisterProduct = document.querySelector(".secondSection");
@@ -119,7 +120,7 @@ export let filterOrdersByStatus = () => {
   }
 };
 
-
+showCurrentDate()
 createEvents();
 
 window.onload = orderServices.searchAllOrders();

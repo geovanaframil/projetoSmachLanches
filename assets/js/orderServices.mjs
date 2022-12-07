@@ -115,7 +115,7 @@ async function searchAllOrders() {
   const orders = await response.json();
 
   showOrdersTable(orders);
-  console.log(orders);
+  
 
   return orders;
 }

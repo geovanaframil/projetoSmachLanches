@@ -31,7 +31,7 @@
         </div>
         <div class="operation-data">
           <p>Operador: Mariluce</p>
-          <p>Data - Hora: 10/10/2022 - 20:54</p>
+          <p id="time"></p>
           <p>Versão 1.0</p>
         </div>
       </aside>
@@ -54,14 +54,14 @@
           <section class="actions">
             <div class="actionsSelect">
               <select name="selectType" id="selectType">
-                <option selected value="type">Tipo</option>
+                <option value="type" disabled selected>Tipo</option>
                 <option value="delivery">Delivery</option>
                 <option value="hall">Salão</option>
               </select>
 
               <div class="orderStatus">
                 <select name="orderStatus" id="selectStatus">
-                  <option selected value="status">Status</option>
+                  <option selected value="status" disabled>Status</option>
                   <option value="received">Recebido</option>
                   <option value="ready">Pronto</option>
                   <option value="delivered">Entregue</option>
@@ -119,12 +119,7 @@
 
             <div class="actionsRadio">
               <div>
-                <input
-                  name="options"
-                  type="radio"
-                  id="delivery"
-                  value="Delivery"
-                />
+                <input name="options" type="radio" id="delivery" value="Delivery" checked/>
                 <label for="delivery">Delivery</label>
               </div>
 
@@ -155,7 +150,7 @@
             <div class="addProduct">
               <div class="qty">
                 <label for="qty">Quantidade</label>
-                <input type="number" id="qty" placeholder="0" />
+                <input type="number" id="qty" placeholder="0" min="1" />
               </div>
               <div class="product">
                 <label for="product">Produto</label>

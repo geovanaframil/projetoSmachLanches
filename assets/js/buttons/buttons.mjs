@@ -72,6 +72,7 @@ export async function valueInputSearch() {
       alert("Código inválido!");
     }
   }
+  qty.value = 1
 }
 
 export let addProduct = () => {
