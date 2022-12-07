@@ -82,45 +82,6 @@ export let changeStatus = (status) => {
   return statusClass;
 };
 
-export let filterOrdersByType = () => {
-  let valueSelectType = selectType.value;
-
-  if (valueSelectType == "type") {
-    updateOrderTable();
-  } else if (valueSelectType == "delivery") {
-    filteredByType = arrayOrders.filter(
-      (element) => element.type == "Delivery"
-    );
-    updateOrderTable(filteredByType);
-  } else if (valueSelectType == "hall") {
-    filteredByType = arrayOrders.filter((element) => element.type == "Salão");
-    updateOrderTable(filteredByType);
-  }
-};
-
-export let filterOrdersByStatus = () => {
-  let valueSelectStatus = selectStatus.value;
-
-  if (valueSelectStatus == "status") {
-    updateOrderTable();
-  } else if (valueSelectStatus == "received") {
-    filteredByStatus = arrayOrders.filter(
-      (element) => element.status == "Recebido"
-    );
-    updateOrderTable(filteredByStatus);
-  } else if (valueSelectStatus == "ready") {
-    filteredByStatus = arrayOrders.filter(
-      (element) => element.status == "Pronto"
-    );
-    updateOrderTable(filteredByStatus);
-  } else if (valueSelectStatus == "delivered") {
-    filteredByStatus = arrayOrders.filter(
-      (element) => element.status == "Entregue"
-    );
-    updateOrderTable(filteredByStatus);
-  }
-};
-
 showCurrentDate()
 createEvents();
 

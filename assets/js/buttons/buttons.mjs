@@ -72,7 +72,7 @@ export async function valueInputSearch() {
       alert("Código inválido!");
     }
   }
-  qty.value = 1
+  qty.value = 1;
 }
 
 export let addProduct = () => {
@@ -172,6 +172,41 @@ export let selectAllCheckbox = () => {
   if (checkboxes.length > 0) {
     indexJs.userInteractionSection.setAttribute("class", "inactive");
     indexJs.sectionBtnDelete.setAttribute("class", "active delete");
+  }
+};
+
+export async function filterOrdersByType() {
+  let valueSelectType = selectType.value;
+
+  let orders = await orderService.searchAllOrders();
+
+  let delivery = [];
+
+  if (valueSelectType == "delivery") {
+    
+  }
+}
+
+export let filterOrdersByStatus = () => {
+  let valueSelectStatus = selectStatus.value;
+
+  if (valueSelectStatus == "status") {
+    updateOrderTable();
+  } else if (valueSelectStatus == "received") {
+    filteredByStatus = arrayOrders.filter(
+      (element) => element.status == "Recebido"
+    );
+    updateOrderTable(filteredByStatus);
+  } else if (valueSelectStatus == "ready") {
+    filteredByStatus = arrayOrders.filter(
+      (element) => element.status == "Pronto"
+    );
+    updateOrderTable(filteredByStatus);
+  } else if (valueSelectStatus == "delivered") {
+    filteredByStatus = arrayOrders.filter(
+      (element) => element.status == "Entregue"
+    );
+    updateOrderTable(filteredByStatus);
   }
 };
 
