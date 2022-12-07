@@ -26,7 +26,6 @@ const saveProduct = () => {
     preco: parseFloat(inputProductPrice.value),
   };
 
-
   const headers = new Headers();
 
   headers.append("content-type", "application/json");
@@ -130,15 +129,17 @@ const showProductsTable = (products) => {
     template += `<td data-td="td_id">${element.id}</td>`;
     template += `<td>${element.nome}</td>`;
     template += `<td>${element.preco}</td>`;
-    template += `<td><button class="edit"><img data-index="tr_${index}" src="./assets/img/Icons/pencil.png"/></button><button class="delete"><img data-index="tr_${index}" src="./assets/img/Icons/grayTrash.png"></button></td>`;
+    template += `<td><button class="edit"><img data-index="tr_${index}" productId="${index}" src="./assets/img/Icons/pencil.png"/></button><button class="btn-delete"><img data-index="tr_${index}" src="./assets/img/Icons/grayTrash.png"></button></td>`;
     template += `<tr>`;
     idProduct = element.id + 1;
-    tableBodyThirdySection.innerHTML = template;
   });
+
+  tableBodyThirdySection.innerHTML = template;
+  
   [...document.querySelectorAll(".edit")].forEach((element) => {
     element.addEventListener("click", editProductForm);
   });
-  [...document.querySelectorAll(".delete")].forEach((element) => {
+  [...document.querySelectorAll(".btn-delete")].forEach((element) => {
     element.addEventListener("click", btnDeleteProduct);
   });
   inputCodProduct.value = idProduct;
@@ -173,14 +174,19 @@ const editProductForm = (button) => {
 const btnDeleteProduct = (button) => {
   let idElementDelete = button.target.dataset.index;
   let trProduct = document.querySelector(`#${idElementDelete}`);
+  console.log(button);
+  if (!trProduct) {
+    return;
+  }
   let tdProducts = trProduct.querySelectorAll("td");
   let idProduct = tdProducts[0].innerText;
   let msg = "Deseja realmente exluir esse produto?";
 
   if (confirm(msg) == true) {
     deleteProduct(idProduct);
-    searchAllProduct();
   }
+
+  searchAllProduct();
 };
 
 //Não pode apagar essa chamada, senão devolve um erro

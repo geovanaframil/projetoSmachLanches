@@ -47,9 +47,9 @@ let exibeSecaoProdutos = () => {
   [...document.querySelectorAll(".edit")].forEach((element) => {
     element.addEventListener("click", productServers.editProductForm);
   });
-  [...document.querySelectorAll(".delete")].forEach((element) => {
-    element.addEventListener("click", productServers.btnDeleteProduct);
-  });
+  // [...document.querySelectorAll("#btnDelete")].forEach((element) => {
+  //   element.addEventListener("click", productServers.btnDeleteProduct);
+  // });
 };
 
 btnSectionProdutos.addEventListener("click", exibeSecaoProdutos);
@@ -59,8 +59,6 @@ export let objectProduct = undefined;
 export let arrayOrder = [];
 export let filteredByType = [];
 export let filteredByStatus = [];
-
-export let arrayForEach = {};
 
 export let total = () => {
   const total = arrayOrder.reduce((current, product) => {
@@ -149,10 +147,6 @@ export let filterOrdersByStatus = () => {
   }
 };
 
-export let selectCheckbox = () => {
-  userInteractionSection.setAttribute("class", "inactive");
-  sectionBtnDelete.setAttribute("class", "active delete");
-};
 
 createEvents();
 

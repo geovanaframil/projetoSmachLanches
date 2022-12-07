@@ -536,7 +536,7 @@ footer {
 }
 
 .edit,
-.delete {
+.btn-delete {
   border: none;
   background-color: transparent;
 }

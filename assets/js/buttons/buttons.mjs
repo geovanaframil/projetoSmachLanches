@@ -2,6 +2,8 @@ import * as indexJs from "../../../index.js";
 import * as orderService from "../orderServices.mjs";
 import * as productServer from "../productServers.mjs";
 
+let checkedAll = false;
+
 class OrderItems {
   idProduct;
   productName;
@@ -156,20 +158,36 @@ export let printBtn = () => {
 };
 
 export let selectAllCheckbox = () => {
-  selectCheckbox();
-  let allInputCheckbox = document.querySelectorAll('input[type="checkbox"]');
+  let checkboxes = document.querySelectorAll(
+    'input[type="checkbox"]:not([id=checkboxHeader])'
+  );
 
-  for (let i = 0; i < allInputCheckbox.length; i++) {
-    allInputCheckbox[i].checked = true;
+  checkboxes.forEach((item) => {
+    item.checked = checkedAll ? false : true;
+  });
+
+  checkedAll = checkedAll ? false : true;
+
+  if (checkboxes.length > 0) {
+    indexJs.userInteractionSection.setAttribute("class", "inactive");
+    indexJs.sectionBtnDelete.setAttribute("class", "active delete");
   }
 };
 
-export let deleteOrder = () => {
+export let btnDeleteOrder = () => {
   let message = "Deseja realmente excluir esse item?";
   let feedBackDelete = "";
   let inputChecked = document.querySelectorAll(
     'input[type="checkbox"]:checked'
   );
+
+  inputChecked.forEach((item) => {
+    if (item.value != "on") {
+      orderService.deleteOrder(item.value).then(() => {
+        orderService.searchAllOrders();
+      });
+    }
+  });
 
   if (inputChecked.length > 1) {
     message = "Deseja realmente excluir esses itens?";
@@ -182,15 +200,12 @@ export let deleteOrder = () => {
   }
 
   if (confirm(message) == true) {
-    inputChecked.forEach((element) => {
-      arrayOrders = arrayOrders.filter(
-        (order) => order.numberOrder != element.parentNode.textContent
-      );
-    });
     alert(feedBackDelete);
-    updateOrderTable();
   }
 
-  userInteractionSection.setAttribute("class", "active headerFunctions");
-  sectionBtnDelete.setAttribute("class", "inactive");
+  indexJs.userInteractionSection.setAttribute(
+    "class",
+    "active headerFunctions"
+  );
+  indexJs.sectionBtnDelete.setAttribute("class", "inactive");
 };
