@@ -76,7 +76,7 @@ const updateProduct = (product, initProduct) => {
       }
     })
     .catch((err) => {
-      alert(err.message);
+      msg(true ,err.message);
     });
 };
 
@@ -92,7 +92,7 @@ const deleteProduct = (id) => {
       }
     })
     .catch((err) => {
-      alert(err.message);
+      msg(true ,err.message);
     });
 };
 

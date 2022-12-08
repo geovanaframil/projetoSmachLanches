@@ -1,6 +1,7 @@
 import * as indexJs from "../../../index.js";
 import * as orderService from "../orderServices.mjs";
 import * as productServer from "../productServers.mjs";
+import {msg} from '../alerta.mjs';
 
 let checkedAll = false;
 
@@ -59,7 +60,7 @@ export async function valueInputSearch() {
   let valueInputSearchProduct = indexJs.inputSearchProduct.value;
 
   if (valueInputSearchProduct == "") {
-    alert("Campo de código não pode estar vazio");
+    msg(true , "Campo de código não pode estar vazio");
   }
 
   if (valueInputSearchProduct) {
@@ -68,14 +69,16 @@ export async function valueInputSearch() {
     );
     if (productFound !== undefined) {
       await productServer.showOrdersForm(productFound);
+      qty.value = 1;
+      document.querySelector('#add').classList.remove('disabled')
+      document.querySelector('#add').removeAttribute('disabled')
+      msg(false)
     } else {
-      alert("Código inválido!");
+      msg(true, 'Produto não encontrado')
     }
-    qty.value = 1;
   }
 
-  document.querySelector('#add').classList.remove('disabled')
-  document.querySelector('#add').removeAttribute('disabled')
+ 
 }
 
 export let addProduct = () => {
@@ -94,7 +97,7 @@ export let addProduct = () => {
   cleanForm();
 
   if (valueInputQty == "") {
-    alert("Digite uma quantidade");
+    alert(true , "Digite uma quantidade");
   } else {
     indexJs.arrayOrder.push(orderItems);
     showOrders();
@@ -161,7 +164,7 @@ export async function saveOrder() {
 
     alert("O pedido foi recebido!");
   } catch (err) {
-    alert(`${err}`);
+    msg(true ,`${err}`);
   }
 
   cleanArrayOrder();
