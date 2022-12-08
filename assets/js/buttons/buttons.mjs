@@ -71,8 +71,11 @@ export async function valueInputSearch() {
     } else {
       alert("Código inválido!");
     }
+    qty.value = 1;
   }
-  qty.value = 1;
+
+  document.querySelector('#add').classList.remove('disabled')
+  document.querySelector('#add').removeAttribute('disabled')
 }
 
 export let addProduct = () => {
@@ -96,6 +99,11 @@ export let addProduct = () => {
     indexJs.arrayOrder.push(orderItems);
     showOrders();
   }
+  document.querySelector('#add').classList.add('disabled');
+  document.querySelector('#add').setAttribute('disabled', 1);
+
+  document.querySelector('#save').classList.remove('disabled');
+  document.querySelector('#save').removeAttribute('disabled');
 };
 
 const showOrders = () => {
@@ -123,9 +131,14 @@ const showOrders = () => {
 export let cancelOrder = () => {
   cleanArrayOrder();
   cleanTableOrderProduct();
+  document.querySelector('#add').classList.add('disabled')
+  document.querySelector('#add').setAttribute('disabled', 1)
+  document.querySelector('#save').classList.add('disabled')
+  document.querySelector('#save').setAttribute('disabled', 1)
 };
 
 export async function saveOrder() {
+
   indexJs.sectionRegisterProduct.setAttribute("class", "inactive");
   indexJs.sectionNewOrder.setAttribute("class", "active main");
 
@@ -152,6 +165,9 @@ export async function saveOrder() {
   }
 
   cleanArrayOrder();
+  document.querySelector('#save').classList.add('disabled');
+  document.querySelector('#save').setAttribute('disabled', 1);
+  
 }
 
 export let printBtn = () => {

@@ -459,12 +459,23 @@ input[type="number"] {
 .save button {
   padding: 8px 16px 8px 16px;
 }
-
+.add button{
+  background-color: var(--color-txt-fourth);
+  cursor: pointer;
+}
+.disabled{
+  background-color:var(--colors-txt-secudary)!important;
+}
+.disabled:hover{
+  background-color:var(--colors-txt-secudary)!important;
+}
 .add button:hover {
   background-color: var(--color-button-secundary);
   cursor: pointer;
 }
-
+.save button{
+  background-color: var(--color-button-primary);
+}
 .save button:hover {
   background-color: var(--color-button-primary);
   cursor: pointer;
