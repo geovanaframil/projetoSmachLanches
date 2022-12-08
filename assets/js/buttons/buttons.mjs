@@ -175,40 +175,24 @@ export let selectAllCheckbox = () => {
   }
 };
 
-export async function filterOrdersByType() {
-  let valueSelectType = selectType.value;
+export async function filterSelect(){
+  let selectType = document.querySelector("#selectType");
+  let selectStatus = document.querySelector("#selectStatus");
+  let orders = await orderService.searchAllOrders()
 
-  let orders = await orderService.searchAllOrders();
-
-  let delivery = [];
-
-  if (valueSelectType == "delivery") {
-    
+  if(selectType.value != '' && selectType.value != 'type'){
+    orders = orders.filter(item =>{ 
+      return item.tipo.toUpperCase() == selectType.value.toUpperCase()
+    } )
+    orderService.showOrdersTable(orders);
+  }
+  if(selectStatus.value != '' && selectStatus.value != 'status'){
+    orders = orders.filter(item =>{ 
+      return item.status.toUpperCase() == selectStatus.value.toUpperCase()
+    } )
+    orderService.showOrdersTable(orders);
   }
 }
-
-export let filterOrdersByStatus = () => {
-  let valueSelectStatus = selectStatus.value;
-
-  if (valueSelectStatus == "status") {
-    updateOrderTable();
-  } else if (valueSelectStatus == "received") {
-    filteredByStatus = arrayOrders.filter(
-      (element) => element.status == "Recebido"
-    );
-    updateOrderTable(filteredByStatus);
-  } else if (valueSelectStatus == "ready") {
-    filteredByStatus = arrayOrders.filter(
-      (element) => element.status == "Pronto"
-    );
-    updateOrderTable(filteredByStatus);
-  } else if (valueSelectStatus == "delivered") {
-    filteredByStatus = arrayOrders.filter(
-      (element) => element.status == "Entregue"
-    );
-    updateOrderTable(filteredByStatus);
-  }
-};
 
 export let btnDeleteOrder = () => {
   let message = "Deseja realmente excluir esse item?";

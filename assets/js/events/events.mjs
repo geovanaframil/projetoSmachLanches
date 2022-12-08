@@ -9,8 +9,7 @@ import {
   btnDeleteOrder,
 } from "../buttons/buttons.mjs";
 import {
-  filterOrdersByType,
-  filterOrdersByStatus,
+  filterSelect
 } from "../buttons/buttons.mjs";
 
 function createEvents() {
@@ -20,15 +19,9 @@ function createEvents() {
   document.querySelector("#cancel").addEventListener("click", cancelOrder);
   document.querySelector("#save").addEventListener("click", saveOrder);
   document.querySelector(".print").addEventListener("click", printBtn);
-  document
-    .querySelector("#selectType")
-    .addEventListener("change", filterOrdersByType);
-  document
-    .querySelector("#selectStatus")
-    .addEventListener("change", filterOrdersByStatus);
-  document
-    .querySelector("#checkboxHeader")
-    .addEventListener("click", selectAllCheckbox);
+  document.querySelector("#selectType").addEventListener("change", filterSelect);
+  document.querySelector("#selectStatus").addEventListener("change", filterSelect);
+  document.querySelector("#checkboxHeader").addEventListener("click", selectAllCheckbox);
   document.querySelector(".delete").addEventListener("click", btnDeleteOrder);
 }
 export default createEvents;
